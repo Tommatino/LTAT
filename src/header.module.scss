@@ -1,0 +1,23 @@
+
+
+.header {
+  height: 6vh;
+  background-color: lightslategrey;
+  padding: 2vh 0;
+  &_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+
+    }
+    .menu{
+
+      &_nav {
+        width: 30rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
