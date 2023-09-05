@@ -1,22 +1,35 @@
 
-
 .header {
   height: 6vh;
   background-color: lightslategrey;
-  padding: 2vh 0;
+  padding: 0 1rem;
   &_container {
+    line-height: 6vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .logo {
-
+      color: gold;
     }
     .menu{
 
       &_nav {
-        width: 30rem;
         display: flex;
         justify-content: space-between;
+        .li {
+          margin-right: 1rem;
+          &:last-child {
+            margin-right: 0;
+            .a {
+            display: flex;
+            align-items: center;
+            }
+            .span {
+             //line-height: 6vh;
+              padding-right: 0.2rem;
+            }
+          }
+        }
       }
     }
   }

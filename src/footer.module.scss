@@ -1,0 +1,13 @@
+
+.footer {
+  height: 6vh;
+  background-color: lightslategrey;
+  padding: 0 1rem;
+  &_container {
+    background-color: deepskyblue;
+    line-height: 6vh;
+    &__link {
+    float: right;
+    }
+  }
+}
