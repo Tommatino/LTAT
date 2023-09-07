@@ -1,0 +1,12 @@
+
+.about {
+  height: 88vh;
+  &_container {
+    background-color: yellow;
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

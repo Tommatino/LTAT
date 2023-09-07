@@ -1,0 +1,12 @@
+
+.statistics {
+  height: 88vh;
+  &_container {
+    background-color: lightblue;
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
