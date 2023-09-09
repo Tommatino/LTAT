@@ -1,20 +1,28 @@
 import Header from './Header'
-import Login from "./Login.jsx";
 import Footer from "./Footer.jsx";
-import MainPage from "./MainPage.jsx";
+import Home from "./Home.jsx";
 import About from "./About.jsx";
 import Statistics from "./Statistics.jsx";
+
+import {
+    HashRouter as Router,
+    Routes,
+    Route,
+    NavLink,
+} from 'react-router-dom';
+
 function App() {
 
   return (
-    <>
-      <Header />
-      <Login />
-      <MainPage />
-      <About />
-      <Statistics />
-      <Footer />
-    </>
+    <Router>
+        <Header />
+        <Routes>
+            <Route path ="/" element={<Home />}/>
+            <Route path ="/about" element={<About />}/>
+            <Route path ="/statistics" element={<Statistics />}/>
+        </Routes>
+        <Footer />
+    </Router>
   )
 }
 

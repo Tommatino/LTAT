@@ -1,4 +1,5 @@
 import styles from './header.module.scss'
+import {NavLink} from "react-router-dom";
 
 // import {
 //     HashRouter as Router,
@@ -16,13 +17,16 @@ function Header(props) {
                 <a href={"/"} className={styles.logo}>LTAT</a>
                 <nav className={styles.menu}>
                     <ul className={styles.menu_nav}>
-                        <li className={styles.li}><a href={"/"}>Strona główna</a></li>
-                        <li className={styles.li}><a href={"/"}>O aplikacji</a></li>
-                        <li className={styles.li}><a href={"/"}>Statystyki</a></li>
                         <li className={styles.li}>
-                            <a className={styles.a} href={"/"}>
-                                <span className={`${styles.span} material-symbols-outlined`}>account_circle</span>User
-                            </a>
+                            <NavLink to={"/"} style={({isActive}) => isActive ? {color: 'green'} : {}} end>Strona główna</NavLink>
+                        </li>
+                        <li className={styles.li}>
+                            <NavLink to={"/about"} style={({isActive}) => isActive ? {color: 'green'} : {}} end>O aplikacji</NavLink>
+                        </li>
+                        <li className={styles.li}>
+                            <NavLink to={"/statistics"} className={styles.NavLink} style={({isActive}) => isActive ? {color: 'green'} : {}} end>
+                            <span className={`${styles.span} material-symbols-outlined`}>account_circle</span>User
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>

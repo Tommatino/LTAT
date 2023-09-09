@@ -1,6 +1,8 @@
-import styles from "./mainpage.module.scss"
+import styles from "./home.module.scss"
 
-function MainPage(props) {
+function Home(props) {
+
+
     return (
         <section className={styles.main}>
             <div className={`${styles.main_container} container`}>
@@ -61,4 +63,4 @@ function MainPage(props) {
     );
 }
 
-export default MainPage;
+export default Home;

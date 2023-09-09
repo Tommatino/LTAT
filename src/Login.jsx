@@ -6,7 +6,10 @@ function Login(props) {
             <form className={`${styles.login_form}`}>
                 <p className={`${styles.p}`}>Podaj dane:</p>
                 <label className={styles.label}>
-                    Imię: <input type="text" placeholder="Imię"/>
+                    Nick: <input type="text" placeholder="Nick"/>
+                </label>
+                <label className={styles.label}>
+                    Hasło: <input type="text" placeholder="Hasło"/>
                 </label>
                 <label className={styles.label}>
                     Płeć:
