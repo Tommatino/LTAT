@@ -1,7 +1,14 @@
 import styles from "./home.module.scss"
+import {useState} from "react";
+import Login from "./Login.jsx";
 
 function Home(props) {
+const [user, setUser] = useState([1])
 
+
+    if(user.length) {
+        return <Login />
+    }
 
     return (
         <section className={styles.main}>
