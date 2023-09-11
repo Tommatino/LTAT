@@ -1,5 +1,7 @@
 import styles from './signup.module.scss'
 import {useState} from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from '../firebase.js'
 
 function Signup(props) {
     const [user, setUser] = useState(
@@ -30,7 +32,7 @@ function Signup(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         const validate = () => {
-            setCheckEmail(user.email.length < 3 && user.email.includes("@"));
+            setCheckEmail(user.email.length < 3 && user.email.includes("@") && user.email.includes("."));
             setCheckPassword(user.password.length < 5);
             setCheckGender(user.gender.length === 0)
             setCheckWeight(user.weight.length === 0)
@@ -44,6 +46,21 @@ function Signup(props) {
         if (validate()){
             console.log('Udało się')
         }
+
+        const auth = getAuth(app);
+        const {email, password} = user
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+
     }
 
 
@@ -67,7 +84,7 @@ function Signup(props) {
                 </label>
                 <button type="submit" className={styles.button}>Prześlij</button>
 
-                {checkEmail && <p>Nick musi się składać z przynajmniej 3 znaków</p>}
+                {checkEmail && <p>Email musi się składać z przynajmniej 3 znaków, oraz zawierać odp znaki</p>}
                 {checkPassword && <p>Hasło musi się składać z przynajmniej 5 znaków</p>}
                 {checkGender && <p>Należy podać płeć</p>}
                 {checkWeight && <p>Należy podać wagę</p>}
