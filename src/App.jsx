@@ -1,8 +1,8 @@
-import Header from './Header'
-import Footer from "./Footer.jsx";
-import Home from "./Home.jsx";
-import About from "./About.jsx";
-import Statistics from "./Statistics.jsx";
+import Header from './Header/Header.jsx'
+import Footer from "./Footer/Footer.jsx";
+import Home from "./Home/Home.jsx";
+import About from "./About/About.jsx";
+import Statistics from "./Statistics/Statistics.jsx";
 
 import {
     HashRouter as Router,

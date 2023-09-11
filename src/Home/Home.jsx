@@ -1,7 +1,7 @@
 import styles from "./home.module.scss"
 import {useState} from "react";
-import Signup from "./Signup.jsx";
-import Login from "./Login.jsx";
+import Signup from "../Signup/Signup.jsx";
+import Login from "../Login/Login.jsx";
 
 function Home(props) {
 const [user, setUser] = useState([1])
