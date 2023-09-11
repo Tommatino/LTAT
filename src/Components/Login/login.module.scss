@@ -5,9 +5,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  &_container {
+    background-color: green;
+  }
   &_form {
     width: 30vw;
-    height: 65vh;
+    height: 15vh;
     background-color: deepskyblue;
     display: flex;
     flex-direction: column;
@@ -15,5 +18,8 @@
     .p, .label, .button {
       margin: 1rem 0 0 1rem;
     }
+  }
+  &_signup {
+    height: 5vh;
   }
 }

@@ -11,6 +11,8 @@ function Home(props) {
         navigate("/signup")
     }
 
+
+
     return (
         <section className={styles.main}>
             <div className={`${styles.main_container} container`}>
