@@ -8,13 +8,13 @@ const [user, setUser] = useState([1])
 const [isloggedin, setIsloggedin] = useState(false)
 
 
-    if(user.length) {
-        return <Signup />
-    }
-
-    if(isloggedin) {
-        return <Login />
-    }
+    // if(user.length) {
+    //     return <Signup />
+    // }
+    //
+    // if(isloggedin) {
+    //     return <Login />
+    // }
 
 
     return (

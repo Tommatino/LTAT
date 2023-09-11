@@ -2,8 +2,10 @@ import styles from './signup.module.scss'
 import {useState} from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../firebase.js'
+import {useNavigate} from "react-router-dom";
 
 function Signup(props) {
+    const navigate = useNavigate()
     const [user, setUser] = useState(
         {
             email: "",
@@ -50,10 +52,9 @@ function Signup(props) {
         const auth = getAuth(app);
         const {email, password} = user
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                // ...
+            .then(()=>{
+                console.log("Sprawdz")
+                navigate("/")
             })
             .catch((error) => {
                 const errorCode = error.code;
