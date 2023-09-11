@@ -1,21 +1,15 @@
 import styles from "./home.module.scss"
-import {useState} from "react";
 import Signup from "../Signup/Signup.jsx";
-import Login from "../Login/Login.jsx";
+import useUserData from "../../Hooks/useUserData.js";
+import {useNavigate} from "react-router-dom";
 
 function Home(props) {
-const [user, setUser] = useState([1])
-const [isloggedin, setIsloggedin] = useState(false)
+    const navigate = useNavigate()
+    const user = useUserData()
 
-
-    // if(user.length) {
-    //     return <Signup />
-    // }
-    //
-    // if(isloggedin) {
-    //     return <Login />
-    // }
-
+    if(!user) {
+        navigate("/signup")
+    }
 
     return (
         <section className={styles.main}>

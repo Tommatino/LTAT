@@ -1,38 +1,27 @@
 import styles from './header.module.scss'
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import { signOut } from 'firebase/auth';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {useEffect, useState} from "react";
 
-// import {
-//     HashRouter as Router,
-//     Routes,
-//     Route,
-//     Link,
-//     Outlet,
-//     NavLink,
-// } from 'react-router-dom';
+import useUserData from "../../Hooks/useUserData.js";
 
 function Header(props) {
-
-    const[userEmail, setUserEmail] = useState(null)
-
+    const navigate = useNavigate()
     const auth = getAuth();
+    const user = useUserData()
+    console.log(user)
 
-    useEffect(() => {
-        //onAuthStateChanged ustawia efekt i odpala się za każdą zmianą
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUserEmail(user.email);
-            } else {
-                setUserEmail(null);
-            }
-        });
-        //trzeba odsubskrybować by apka się nie zapętlała
-        return () => unsubscribe();
-    }, [auth]);
-
-
-
+    const handleLogOut = () => {
+        signOut(auth)
+            .then(() => {
+                navigate("/login")
+            })
+            .catch((error) => {
+                // An error occurred during sign-out.
+                console.error('Sign-out error:', error);
+            });
+    }
 
     return (
         <header className={`${styles.header}`}>
@@ -48,9 +37,13 @@ function Header(props) {
                         </li>
                         <li className={styles.li}>
                             <NavLink to={"/statistics"} className={styles.NavLink} style={({isActive}) => isActive ? {color: 'green'} : {}} end>
-                            <span className={`${styles.span} material-symbols-outlined`}>account_circle</span>{userEmail ? userEmail : "Not logged in"}
+                            <span className={`${styles.span} material-symbols-outlined`}>account_circle</span>{user && user?.email ? user.email : "Not logged in"}
                             {/*alternatywnie span z user można zapisać: userEmail || "not logged in"*/}
+                            {/*    znak zapytania używamy by uniknąć wyświetlania błędu w sytuacji gdy nie ma takiego obiektu*/}
                             </NavLink>
+                        </li>
+                        <li>
+                            {user && <button onClick={handleLogOut} >Log out</button>}
                         </li>
                     </ul>
                 </nav>

@@ -1,7 +1,7 @@
 import styles from './signup.module.scss'
 import {useState} from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from '../firebase.js'
+import { app } from '../../firebase.js'
 import {useNavigate} from "react-router-dom";
 
 function Signup(props) {

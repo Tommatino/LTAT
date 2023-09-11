@@ -1,10 +1,10 @@
-import Header from './Header/Header.jsx'
-import Footer from "./Footer/Footer.jsx";
-import Home from "./Home/Home.jsx";
-import About from "./About/About.jsx";
-import Statistics from "./Statistics/Statistics.jsx";
-import Signup from "./Signup/Signup.jsx";
-import Login from "./Login/Login.jsx"
+import Header from './Components/Header/Header.jsx'
+import Footer from "./Components/Footer/Footer.jsx";
+import Home from "./Components/Home/Home.jsx";
+import About from "./Components/About/About.jsx";
+import Statistics from "./Components/Statistics/Statistics.jsx";
+import Signup from "./Components/Signup/Signup.jsx";
+import Login from "./Components/Login/Login.jsx"
 
 
 import {
