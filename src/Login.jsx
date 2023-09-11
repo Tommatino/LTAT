@@ -1,20 +1,15 @@
 import styles from './login.module.scss'
 import {useState} from "react";
 
-function Login(props) {
+function Signup(props) {
     const [user, setUser] = useState(
         {
-            nick: "",
+            email: "",
             password: "",
-            gender: "",
-            weight: "",
-            days: []
         }
     )
-    const [checkNick, setCheckNick] = useState(false);
+    const [checkEmail, setCheckEmail] = useState(false);
     const [checkPassword, setCheckPassword] = useState(false)
-    const [checkGender, setCheckGender] = useState(false)
-    const [checkWeight, setCheckWeight] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,11 +25,10 @@ function Login(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         const validate = () => {
-            setCheckNick(user.nick.length < 3);
-            setCheckPassword(user.password.length < 5);
-            setCheckGender(user.gender.length === 0)
-            setCheckWeight(user.weight.length === 0)
-            if (checkNick || checkPassword || checkGender || checkWeight) {
+            // setCheckEmail();
+            // setCheckPassword();
+
+            if (checkEmail || checkPassword) {
                 return false
             } else {
                 return true
@@ -50,30 +44,21 @@ function Login(props) {
     return (
         <section className={`${styles.login}`}>
             <form className={`${styles.login_form}`} onSubmit={handleSubmit}>
-                <h3 className={`${styles.p}`}>Podaj dane:</h3>
+                <h3 className={`${styles.p}`}>Login:</h3>
                 <label className={styles.label}>
-                    Nick: <input type="text" name="nick" value={user.nick} onChange={handleChange} placeholder="Nick"/>
+                    E-mail: <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="E-mail"/>
                 </label>
                 <label className={styles.label}>
-                    Hasło: <input type="text" name="password" value={user.password} onChange={handleChange} placeholder="Hasło"/>
-                </label>
-                <label className={styles.label}>
-                    Płeć:
-                    <input type="radio" name="gender" value="Female" onChange={handleChange}/>K
-                    <input type="radio" name="gender" value="Male" onChange={handleChange}/>M
-                </label>
-                <label className={styles.label}>
-                    Waga: <input type="number" name="weight" value={user.weight} onChange={handleChange} placeholder="kg"/>
+                    Hasło: <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="Hasło"/>
                 </label>
                 <button type="submit" className={styles.button}>Prześlij</button>
 
-                {checkNick && <p>Nick musi się składać z przynajmniej 3 znaków</p>}
-                {checkPassword && <p>Hasło musi się składać z przynajmniej 5 znaków</p>}
-                {checkGender && <p>Należy podać płeć</p>}
-                {checkWeight && <p>Należy podać wagę</p>}
+                {checkEmail && <p>Niezgodny e-mail</p>}
+                {checkPassword && <p>Niezgodne hasło</p>}
+
             </form>
         </section>
     );
 }
 
-export default Login;
+export default Signup;

@@ -1,14 +1,21 @@
 import styles from "./home.module.scss"
 import {useState} from "react";
+import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 
 function Home(props) {
 const [user, setUser] = useState([1])
+const [isloggedin, setIsloggedin] = useState(false)
 
 
     if(user.length) {
+        return <Signup />
+    }
+
+    if(isloggedin) {
         return <Login />
     }
+
 
     return (
         <section className={styles.main}>

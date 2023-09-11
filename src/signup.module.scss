@@ -1,0 +1,19 @@
+
+.signup {
+  height: 88vh;
+  background-color: magenta;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_form {
+    width: 30vw;
+    height: 65vh;
+    background-color: deepskyblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .p, .label, .button {
+      margin: 1rem 0 0 1rem;
+    }
+  }
+}
