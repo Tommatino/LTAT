@@ -5,10 +5,11 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {useEffect, useState} from "react";
 
 import useUserData from "../../Hooks/useUserData.js";
+import { app } from '../../firebase.js'
 
-function Header(props) {
+function Header() {
     const navigate = useNavigate()
-    const auth = getAuth();
+    const auth = getAuth(app);
     const user = useUserData()
     console.log(user)
 
@@ -38,7 +39,7 @@ function Header(props) {
                         <li className={styles.li}>
                             <NavLink to={"/statistics"} className={styles.NavLink} style={({isActive}) => isActive ? {color: 'green'} : {}} end>
                             <span className={`${styles.span} material-symbols-outlined`}>account_circle</span>{user && user?.email ? user.email : "Not logged in"}
-                            {/*alternatywnie span z user można zapisać: userEmail || "not logged in"*/}
+                            {/*alternatywnie span z user można zapisać: user.email || "not logged in"*/}
                             {/*    znak zapytania używamy by uniknąć wyświetlania błędu w sytuacji gdy nie ma takiego obiektu*/}
                             </NavLink>
                         </li>

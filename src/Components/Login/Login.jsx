@@ -1,7 +1,12 @@
 import styles from './login.module.scss'
 import {useState} from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from '../../firebase.js'
+import {useNavigate} from "react-router-dom";
 
-function Signup(props) {
+function Signup() {
+    const auth = getAuth(app);
+    const navigate = useNavigate()
     const [user, setUser] = useState(
         {
             email: "",
@@ -19,27 +24,25 @@ function Signup(props) {
                 [name]: value,
             };
         });
-        console.log(user)
+        //console.log(user)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const validate = () => {
-            // setCheckEmail();
-            // setCheckPassword();
 
-            if (checkEmail || checkPassword) {
-                return false
-            } else {
-                return true
-            }
-        }
-
-        if (validate()){
-            console.log('Udało się')
-        }
+        signInWithEmailAndPassword(auth, user.email, user.password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                navigate("/")
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(`Error code: ${errorCode}`)
+                console.log(`Error code: ${errorMessage}`)
+            });
     }
-
 
     return (
         <section className={`${styles.login}`}>
