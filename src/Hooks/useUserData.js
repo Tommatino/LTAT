@@ -13,7 +13,7 @@ function useUserData() {
             //getCurrentUser
             if (user) {
                 setUser(user);
-                console.log(user)
+                //console.log(user)
             } else {
                 setUser(null);
             }

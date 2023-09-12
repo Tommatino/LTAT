@@ -1,13 +1,20 @@
-import styles from "./statistics.module.scss"
+import styles from "./statistics.module.scss";
+import useUserData from "../../Hooks/useUserData.js";
+import { useNavigate } from "react-router-dom";
 
 function Statistics(props) {
-    return (
-        <section className={styles.statistics}>
-            <div className={`${styles.statistics_container} container`}>
+  const user = useUserData();
+  const navigate = useNavigate();
 
-            </div>
-        </section>
-    );
+  if (!user) {
+    navigate("/signup");
+  }
+
+  return (
+    <section className={styles.statistics}>
+      <div className={`${styles.statistics_container} container`}></div>
+    </section>
+  );
 }
 
 export default Statistics;
