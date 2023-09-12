@@ -52,14 +52,12 @@ function Signup() {
       };
 
       if (validate()) {
-        console.log("Udało się");
+        const { email, password } = user;
+        await createUserWithEmailAndPassword(auth, email, password);
+
+        console.log("Sprawdz");
+        navigate("/");
       }
-
-      const { email, password } = user;
-      await createUserWithEmailAndPassword(auth, email, password);
-
-      console.log("Sprawdz");
-      navigate("/");
     } catch (error) {
       setError(error?.message || "Coś poszło nie tak");
     }

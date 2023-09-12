@@ -17,8 +17,10 @@ function Header() {
           <ul className={styles.menu_nav}>
             <li className={styles.li}>
               <NavLink
-                to={"/"}
-                style={({ isActive }) => (isActive ? { color: "green" } : {})}
+                to={user ? "/" : "/signup"}
+                style={({ isActive }) =>
+                  isActive && user ? { color: "green" } : {}
+                }
                 end
               >
                 Strona główna
@@ -26,8 +28,10 @@ function Header() {
             </li>
             <li className={styles.li}>
               <NavLink
-                to={"/about"}
-                style={({ isActive }) => (isActive ? { color: "green" } : {})}
+                to={user ? "/about" : "/signup"}
+                style={({ isActive }) =>
+                  isActive && user ? { color: "green" } : {}
+                }
                 end
               >
                 O aplikacji
@@ -35,9 +39,11 @@ function Header() {
             </li>
             <li className={styles.li}>
               <NavLink
-                to={"/statistics"}
+                to={user ? "/statistics" : "/signup"}
                 className={styles.NavLink}
-                style={({ isActive }) => (isActive ? { color: "green" } : {})}
+                style={({ isActive }) =>
+                  isActive && user ? { color: "green" } : {}
+                }
                 end
               >
                 <span className={`${styles.span} material-symbols-outlined`}>
