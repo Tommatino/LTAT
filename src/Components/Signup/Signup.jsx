@@ -31,37 +31,38 @@ function Signup() {
     console.log(user);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validate = () => {
-      setCheckEmail(
-        user.email.length < 3 &&
-          user.email.includes("@") &&
-          user.email.includes("."),
-      );
-      setCheckPassword(user.password.length < 5);
-      setCheckGender(user.gender.length === 0);
-      setCheckWeight(user.weight.length === 0);
-      if (checkEmail || checkPassword || checkGender || checkWeight) {
-        return false;
-      } else {
-        return true;
+  const handleSubmit = async (e) => {
+    //najpierw wchodzi do try, jak coś się nie powiedzie to wchodzi do catcha
+    try {
+      e.preventDefault();
+      const validate = () => {
+        setCheckEmail(
+          user.email.length < 3 &&
+            user.email.includes("@") &&
+            user.email.includes("."),
+        );
+        setCheckPassword(user.password.length < 5);
+        setCheckGender(user.gender.length === 0);
+        setCheckWeight(user.weight.length === 0);
+        if (checkEmail || checkPassword || checkGender || checkWeight) {
+          return false;
+        } else {
+          return true;
+        }
+      };
+
+      if (validate()) {
+        console.log("Udało się");
       }
-    };
 
-    if (validate()) {
-      console.log("Udało się");
+      const { email, password } = user;
+      await createUserWithEmailAndPassword(auth, email, password);
+
+      console.log("Sprawdz");
+      navigate("/");
+    } catch (error) {
+      setError(error?.message || "Coś poszło nie tak");
     }
-
-    const { email, password } = user;
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        console.log("Sprawdz");
-        navigate("/");
-      })
-      .catch((error) => {
-        setError(error?.message || "Coś poszło nie tak");
-      });
   };
 
   return (

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 function Home() {
   const navigate = useNavigate();
   const user = useUserData();
-  const [days, setDays] = useState([]);
+  const [days, setDays] = useState([1, 2, 3]);
   const [currentDay, setCurrentDay] = useState({
     lp: "",
     data: "",
@@ -32,12 +32,13 @@ function Home() {
   //     return (volumeGrams / (user.weight * {user.gender === "k" ? 0.6 : 0.7}));
   // }
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/signup");
-      console.log(user);
-    }
-  }, [navigate, user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     console.log(user, 1);
+  //     navigate("/signup");
+  //     console.log(user, 2);
+  //   }
+  // }, [navigate, user]);
 
   return (
     <section className={styles.main}>
