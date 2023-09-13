@@ -11,6 +11,8 @@ function UserParametersForm(props) {
     gender: "F",
     weight: 0,
   });
+  const [checkWeight, setCheckWeight] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser((prevState) => {
@@ -22,19 +24,25 @@ function UserParametersForm(props) {
     console.log(user);
   };
 
+  const validate = () => {
+    setCheckWeight(parseInt(user.weight, 10) > 0);
+    if (checkWeight) {
+      return true;
+    }
+    return false;
+  };
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const userParametersRef = collection(db, "userParameters");
-      console.log("Test user form");
-      const docRef = await setDoc(
-        doc(userParametersRef, auth.currentUser.uid),
-        {
+      if (validate()) {
+        const userParametersRef = collection(db, "userParameters");
+        console.log("Test user form");
+        await setDoc(doc(userParametersRef, auth.currentUser.uid), {
           gender: user.gender,
           weight: user.weight,
-        },
-      );
-      console.log("Document written with ID: ", docRef);
+        });
+      }
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -52,7 +60,7 @@ function UserParametersForm(props) {
               type="radio"
               name="gender"
               value="F"
-              checked
+              checked={user.gender === "F"}
               onChange={handleChange}
             />
             K
@@ -60,6 +68,7 @@ function UserParametersForm(props) {
               type="radio"
               name="gender"
               value="M"
+              checked={user.gender === "M"}
               onChange={handleChange}
             />
             M
@@ -77,7 +86,7 @@ function UserParametersForm(props) {
           <button type="submit" className={styles.button}>
             Prześlij
           </button>
-
+          {checkWeight && <p>Musisz podać wagę</p>}
           {/*{checkWeight && <p>Należy podać wagę</p>}*/}
         </form>
       </div>
