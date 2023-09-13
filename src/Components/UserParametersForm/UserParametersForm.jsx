@@ -5,7 +5,7 @@ import { app, db } from "../../firebase.js";
 import { useState } from "react";
 import { addDoc, setDoc, doc, collection } from "firebase/firestore";
 
-function UserParametersForm(props) {
+function UserParametersForm() {
   const auth = getAuth(app);
   const [user, setUser] = useState({
     gender: "F",
@@ -25,8 +25,16 @@ function UserParametersForm(props) {
   };
 
   const validate = () => {
-    setCheckWeight(parseInt(user.weight, 10) > 0);
-    if (checkWeight) {
+    console.log(
+      typeof user.weight,
+      user.weight,
+      user.weight.length,
+      typeof user.weight.length,
+    );
+    setCheckWeight(
+      user.weight.length > 0 && user.weight !== "0" ? false : true,
+    );
+    if (!checkWeight) {
       return true;
     }
     return false;
@@ -37,7 +45,6 @@ function UserParametersForm(props) {
       e.preventDefault();
       if (validate()) {
         const userParametersRef = collection(db, "userParameters");
-        console.log("Test user form");
         await setDoc(doc(userParametersRef, auth.currentUser.uid), {
           gender: user.gender,
           weight: user.weight,
@@ -87,7 +94,6 @@ function UserParametersForm(props) {
             Prześlij
           </button>
           {checkWeight && <p>Musisz podać wagę</p>}
-          {/*{checkWeight && <p>Należy podać wagę</p>}*/}
         </form>
       </div>
     </section>
