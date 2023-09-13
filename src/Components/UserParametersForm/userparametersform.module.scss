@@ -1,14 +1,12 @@
 
-.signup {
+.userform {
   height: 88vh;
   background-color: magenta;
   display: flex;
   justify-content: center;
   align-items: center;
   &_wrapper {
-    .NavLink {
-      border: 3px solid black;
-    }
+
   }
   &_form {
     width: 30vw;

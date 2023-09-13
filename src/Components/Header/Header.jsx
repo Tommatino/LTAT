@@ -10,7 +10,7 @@ function Header() {
   return (
     <header className={`${styles.header}`}>
       <div className={`${styles.header_container} container`}>
-        <a href={"/"} className={styles.logo}>
+        <a href={user ? "/" : "/signup"} className={styles.logo}>
           LTAT
         </a>
         <nav className={styles.menu}>
@@ -24,6 +24,17 @@ function Header() {
                 end
               >
                 Strona główna
+              </NavLink>
+            </li>
+            <li className={styles.li}>
+              <NavLink
+                to={user ? "/userform" : "/signup"}
+                style={({ isActive }) =>
+                  isActive && user ? { color: "green" } : {}
+                }
+                end
+              >
+                Dane użytkownika
               </NavLink>
             </li>
             <li className={styles.li}>

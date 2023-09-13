@@ -5,6 +5,7 @@ import About from "./Components/About/About.jsx";
 import Statistics from "./Components/Statistics/Statistics.jsx";
 import Signup from "./Components/Signup/Signup.jsx";
 import Login from "./Components/Login/Login.jsx";
+import UserParametersForm from "./Components/UserParametersForm/UserParametersForm.jsx";
 
 import {
   BrowserRouter as Router,
@@ -18,9 +19,10 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path={"/"} element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/userform" element={<UserParametersForm />} />
         <Route path="/about" element={<About />} />
         <Route path="/statistics" element={<Statistics />} />
       </Routes>

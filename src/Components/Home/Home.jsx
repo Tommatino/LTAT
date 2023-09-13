@@ -28,17 +28,13 @@ function Home() {
     setVolumeGrams(alcoholGrams);
   };
 
-  // const promilCalc = () => {
-  //     return (volumeGrams / (user.weight * {user.gender === "k" ? 0.6 : 0.7}));
-  // }
-
+  console.log(user, "Home again");
   // useEffect(() => {
   //   if (!user) {
-  //     console.log(user, 1);
+  //     console.log(user, "Home check");
   //     navigate("/signup");
-  //     console.log(user, 2);
   //   }
-  // }, [navigate, user]);
+  // }, [user, navigate]);
 
   return (
     <section className={styles.main}>
