@@ -1,0 +1,10 @@
+.form_container {
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+}

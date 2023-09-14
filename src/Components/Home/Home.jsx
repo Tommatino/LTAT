@@ -7,37 +7,14 @@ import { useEffect } from "react";
 import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 import { db, app } from "../../firebase.js";
 import { getAuth } from "firebase/auth";
+import AlcoholDayForm from "../AlcoholDayForm/AlcoholDayForm.jsx";
 
 function Home() {
   const navigate = useNavigate();
   const auth = getAuth(app);
   const user = useUserData();
-  const [days, setDays] = useState([1, 2, 3]);
-  const [currentDay, setCurrentDay] = useState({
-    lp: "",
-    data: "",
-    volume: 0,
-    relation: "",
-    burning: "",
-    promil: 0,
-    influence: "",
-  });
+
   const [userParam, setUserParam] = useState({});
-  const [volumeML, setVolumeML] = useState(0);
-  const [volumeGrams, setVolumeGrams] = useState(0);
-  const [alcoholPercentage, setAlcoholPercentage] = useState(0);
-  const [promileCalculated, setPromileCalculated] = useState(0);
-
-  const calculateGrams = () => {
-    const alcoholPure = volumeML * (alcoholPercentage / 100);
-    const alcoholGrams = (10 * alcoholPure) / 12.5;
-    setVolumeGrams(alcoholGrams);
-  };
-
-  // const calculatePromile = () => {
-  //   const promile = volumeGrams / (userParam.weight * {userParam.gender === "F" ? 0.6 : 0.7} );
-  //   setPromileCalculated(promile)
-  // };
 
   const getUser = async () => {
     //const querySnapshot = await getDocs(collection(db, "userParameters"));
@@ -50,9 +27,9 @@ function Home() {
 
   useEffect(() => {
     getUser()
-      .then((data) => {
-        console.log("Data from getUser", data.data());
-        setUserParam(data);
+      .then((docSnap) => {
+        console.log("Data from getUser", docSnap.data());
+        setUserParam(docSnap.data());
       })
       .catch((err) => {
         console.log("The error", err);
@@ -66,32 +43,7 @@ function Home() {
       <div className={`${styles.main_container} container`}>
         <article className={styles.main_article}>
           <div className={styles.main_article__first}>
-            <form className={styles.form}>
-              <button>
-                <span className="material-symbols-outlined">add_box</span>Dodaj
-                dzień
-              </button>
-              <label>
-                Ilość spoż. alkoholu [ml]:{" "}
-                <input
-                  type="number"
-                  value={volumeML}
-                  onChange={(e) => setVolumeML(e.target.value)}
-                />
-              </label>
-              <label>
-                Zawartość alkoholu [%]:{" "}
-                <input
-                  type="number"
-                  value={alcoholPercentage}
-                  onChange={(e) => setAlcoholPercentage(e.target.value)}
-                />
-              </label>
-              <button>
-                Dodaj pozycję i zsumuj{" "}
-                <span className="material-symbols-outlined">add_box</span>
-              </button>
-            </form>
+            <AlcoholDayForm />
             <div className={styles.div}>
               <p>Ilość spoż. alkoholu w ostatnim tygodniu [g]:</p>
               <p>100</p>
@@ -114,9 +66,6 @@ function Home() {
                   <th className={styles.td}>Promile, wpływ na zdrowie</th>
                   <th className={styles.td}>Usuń</th>
                 </tr>
-                {days.map((day, index) => (
-                  <Row key={index} lp={index + 1} />
-                ))}
               </tbody>
             </table>
           </div>

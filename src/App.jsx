@@ -14,6 +14,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute.jsx";
+import AlcoholDayForm from "./Components/AlcoholDayForm/AlcoholDayForm.jsx";
 
 function App() {
   return (
@@ -25,6 +26,15 @@ function App() {
           element={
             <PrivateRoute>
               <Home />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/alcohol-form"
+          element={
+            <PrivateRoute>
+              <AlcoholDayForm />
             </PrivateRoute>
           }
         />

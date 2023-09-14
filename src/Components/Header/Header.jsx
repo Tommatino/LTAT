@@ -26,6 +26,19 @@ function Header() {
                 Strona główna
               </NavLink>
             </li>
+
+            <li className={styles.li}>
+              <NavLink
+                to={user ? "/alcohol-form" : "/signup"}
+                style={({ isActive }) =>
+                  isActive && user ? { color: "green" } : {}
+                }
+                end
+              >
+                % Formularz
+              </NavLink>
+            </li>
+
             <li className={styles.li}>
               <NavLink
                 to={user ? "/userform" : "/signup"}
