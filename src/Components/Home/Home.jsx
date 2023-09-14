@@ -43,7 +43,7 @@ function Home() {
       <div className={`${styles.main_container} container`}>
         <article className={styles.main_article}>
           <div className={styles.main_article__first}>
-            <AlcoholDayForm />
+            {/*<AlcoholDayForm />*/}
             <div className={styles.div}>
               <p>Ilość spoż. alkoholu w ostatnim tygodniu [g]:</p>
               <p>100</p>
