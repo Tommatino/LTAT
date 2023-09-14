@@ -4,9 +4,13 @@ import useUserData from "../../Hooks/useUserData.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
+import { db, app } from "../../firebase.js";
+import { getAuth } from "firebase/auth";
 
 function Home() {
   const navigate = useNavigate();
+  const auth = getAuth(app);
   const user = useUserData();
   const [days, setDays] = useState([1, 2, 3]);
   const [currentDay, setCurrentDay] = useState({
@@ -18,9 +22,11 @@ function Home() {
     promil: 0,
     influence: "",
   });
+  const [userParam, setUserParam] = useState({});
   const [volumeML, setVolumeML] = useState(0);
   const [volumeGrams, setVolumeGrams] = useState(0);
   const [alcoholPercentage, setAlcoholPercentage] = useState(0);
+  const [promileCalculated, setPromileCalculated] = useState(0);
 
   const calculateGrams = () => {
     const alcoholPure = volumeML * (alcoholPercentage / 100);
@@ -28,13 +34,32 @@ function Home() {
     setVolumeGrams(alcoholGrams);
   };
 
+  // const calculatePromile = () => {
+  //   const promile = volumeGrams / (userParam.weight * {userParam.gender === "F" ? 0.6 : 0.7} );
+  //   setPromileCalculated(promile)
+  // };
+
+  const getUser = async () => {
+    //const querySnapshot = await getDocs(collection(db, "userParameters"));
+    const docRef = doc(db, "userParameters", auth.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+
+    console.log("Snapshot test new", docSnap);
+    return docSnap;
+  };
+
+  useEffect(() => {
+    getUser()
+      .then((data) => {
+        console.log("Data from getUser", data.data());
+        setUserParam(data);
+      })
+      .catch((err) => {
+        console.log("The error", err);
+      });
+  }, []);
+
   console.log(user, "Home again");
-  // useEffect(() => {
-  //   if (!user) {
-  //     console.log(user, "Home check");
-  //     navigate("/signup");
-  //   }
-  // }, [user, navigate]);
 
   return (
     <section className={styles.main}>

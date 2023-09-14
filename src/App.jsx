@@ -13,18 +13,42 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute.jsx";
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path={"/"} element={<Home />} />
+        <Route
+          path={"/"}
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/userform" element={<UserParametersForm />} />
+        <Route
+          path="/userform"
+          element={
+            <PrivateRoute>
+              <UserParametersForm />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/about" element={<About />} />
-        <Route path="/statistics" element={<Statistics />} />
+        <Route
+          path="/statistics"
+          element={
+            <PrivateRoute>
+              <Statistics />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </Router>
