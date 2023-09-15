@@ -16,10 +16,9 @@ function useAlcoholData() {
   };
   const setAlcoholDay = async (alcohol, prevAlcoholState) => {
     const alcoholStatisticsRef = collection(db, "alcoholStatistics");
-    await setDoc(doc(alcoholStatisticsRef, auth.currentUser.uid)),
-      {
-        [currentDay]: alcohol + prevAlcoholState,
-      };
+    await setDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
+      [currentDay]: alcohol + prevAlcoholState,
+    });
   };
 
   return { setAlcoholDay, getAlcoholDay };
