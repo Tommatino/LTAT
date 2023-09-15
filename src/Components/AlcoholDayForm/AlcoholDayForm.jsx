@@ -26,21 +26,6 @@ function AlcoholDayForm() {
     });
   };
 
-  // const getUserParam = async () => {
-  //   const docUserParamRef = doc(db, "userParameters", auth.currentUser.uid);
-  //   const docSnap = await getDoc(docUserParamRef);
-  //   console.log("Document data:", docSnap.data());
-  //   setUserParam(docSnap.data());
-  // };
-
-  // useEffect(() => {
-  //   try {
-  //     getUserParam();
-  //   } catch (e) {
-  //     console.log("Error getting collection data:", e);
-  //   }
-  // }, []);
-
   const calculateGrams = () => {
     const alcoholPureMlCalc =
       alcoholFormValues.alcoholML * (alcoholFormValues.alcoholPercentage / 100);
@@ -48,18 +33,14 @@ function AlcoholDayForm() {
     setAlcoholGrams((prev) => prev + alcoholGramsCalc);
   };
 
-  // const calculatePromile = () => {
-  //   console.log("CalcPromile user param data:", userParam);
-  //   const factor = userParam.gender === "F" ? 0.6 : 0.7;
-  //   const promile = alcoholGrams / (parseInt(userParam.weight, 10) * factor);
-  //   console.log("promile", promile);
-  //   setPromileTotal((prev) => prev + promile);
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     calculateGrams();
     console.log(alcoholGrams);
+    setAlcoholFormValues({
+      alcoholML: 0,
+      alcoholPercentage: 0,
+    });
   };
 
   const handleClick = async () => {

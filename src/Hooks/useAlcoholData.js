@@ -21,7 +21,13 @@ function useAlcoholData() {
     });
   };
 
-  return { setAlcoholDay, getAlcoholDay };
+  const getAlcoholData = async () => {
+    const docRef = doc(db, "alcoholStatistics", auth.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
+  };
+
+  return { setAlcoholDay, getAlcoholDay, getAlcoholData };
 }
 
 export default useAlcoholData;

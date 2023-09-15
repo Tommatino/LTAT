@@ -7,36 +7,35 @@ import { useEffect } from "react";
 import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 import { db, app } from "../../firebase.js";
 import { getAuth } from "firebase/auth";
+import useUserParameteres from "../../Hooks/useUserParameteres.js";
 import AlcoholDayForm from "../AlcoholDayForm/AlcoholDayForm.jsx";
+import useAlcoholData from "../../Hooks/useAlcoholData.js";
 
 function Home() {
+  const { getUserParam } = useUserParameteres();
+  const { getAlcoholData } = useAlcoholData();
   const navigate = useNavigate();
   const auth = getAuth(app);
   const user = useUserData();
-
   const [userParam, setUserParam] = useState({});
-
-  const getUser = async () => {
-    //const querySnapshot = await getDocs(collection(db, "userParameters"));
-    const docRef = doc(db, "userParameters", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-
-    console.log("Snapshot test new", docSnap);
-    return docSnap;
-  };
+  const [alcoholData, setAlcoholData] = useState({});
 
   useEffect(() => {
-    getUser()
-      .then((docSnap) => {
-        console.log("Data from getUser", docSnap.data());
-        setUserParam(docSnap.data());
-      })
-      .catch((err) => {
-        console.log("The error", err);
-      });
+    const getUserData = async () => {
+      try {
+        const [fetchedUserParam, fetchedAlcoholData] = await Promise.all([
+          //promise all, przyjmuje kilka promisów i po ich realizacji zwraca jeden (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+          getUserParam(),
+          getAlcoholData(),
+        ]);
+        setUserParam(fetchedUserParam);
+        setAlcoholData(fetchedAlcoholData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUserData();
   }, []);
-
-  console.log(user, "Home again");
 
   return (
     <section className={styles.main}>
@@ -53,7 +52,7 @@ function Home() {
           </div>
           <div className={styles.main_article__second}>
             <table className={styles.table}>
-              <tbody>
+              <thead>
                 <tr>
                   <th className={styles.td}>lp.</th>
                   <th className={styles.td}>Data</th>
@@ -66,6 +65,18 @@ function Home() {
                   <th className={styles.td}>Promile, wpływ na zdrowie</th>
                   <th className={styles.td}>Usuń</th>
                 </tr>
+              </thead>
+              <tbody>
+                {Object.keys(alcoholData).map((date, index) => (
+                  <Row
+                    key={date}
+                    date={date}
+                    alcoholGrams={alcoholData[date]}
+                    lp={index}
+                    gender={userParam.gender}
+                    weight={userParam.weight}
+                  />
+                ))}
               </tbody>
             </table>
           </div>

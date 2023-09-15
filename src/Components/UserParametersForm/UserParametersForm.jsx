@@ -31,9 +31,7 @@ function UserParametersForm() {
       user.weight.length,
       typeof user.weight.length,
     );
-    setCheckWeight(
-      user.weight.length > 0 && user.weight !== "0" ? false : true,
-    );
+    setCheckWeight(user.weight > 0 ? false : true);
     if (!checkWeight) {
       return true;
     }
@@ -47,7 +45,7 @@ function UserParametersForm() {
         const userParametersRef = collection(db, "userParameters");
         await setDoc(doc(userParametersRef, auth.currentUser.uid), {
           gender: user.gender,
-          weight: user.weight,
+          weight: parseInt(user.weight),
         });
       }
     } catch (e) {
