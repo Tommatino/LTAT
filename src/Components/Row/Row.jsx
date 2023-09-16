@@ -50,14 +50,14 @@ function Row({ date, alcoholGrams, lp, gender, weight }) {
 
   return (
     <tr style={styles.tr}>
-      <td style={styles.td}>{lp + 1}</td>
-      <td style={styles.td}>{date}</td>
-      <td style={styles.td}>{alcoholGrams}</td>
-      <td style={styles.td}>{relation()}</td>
-      <td style={styles.td}>{(alcoholGrams / 10).toFixed(1)}</td>
-      <td style={styles.td}>{promileSwitch}</td>
-      <td style={styles.td}>{switchText}</td>
-      <td style={styles.td}>
+      <td>{lp + 1}</td>
+      <td>{date}</td>
+      <td>{alcoholGrams}</td>
+      <td>{relation()}</td>
+      <td>{(alcoholGrams / 10).toFixed(1)}</td>
+      <td>{promileSwitch}</td>
+      <td>{switchText}</td>
+      <td>
         <span className="material-symbols-outlined">disabled_by_default</span>
       </td>
     </tr>

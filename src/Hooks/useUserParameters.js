@@ -2,7 +2,7 @@ import { getAuth } from "firebase/auth";
 import { app, db } from "../firebase.js";
 import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 
-function useUserParameteres() {
+function useUserParameters() {
   const auth = getAuth(app);
   const getUserParam = async () => {
     const docUserParamRef = doc(db, "userParameters", auth.currentUser.uid);
@@ -14,4 +14,4 @@ function useUserParameteres() {
   return { getUserParam };
 }
 
-export default useUserParameteres;
+export default useUserParameters;

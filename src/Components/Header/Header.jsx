@@ -73,9 +73,7 @@ function Header() {
                 <span className={`${styles.span} material-symbols-outlined`}>
                   account_circle
                 </span>
-                {user && user?.email ? user.email : "Not logged in"}
-                {/*alternatywnie span z user można zapisać: user.email || "not logged in"*/}
-                {/*    znak zapytania używamy by uniknąć wyświetlania błędu w sytuacji gdy nie ma takiego obiektu*/}
+                {user?.email || "Not logged in"}
                 {user && <Logout />}
               </NavLink>
             </li>

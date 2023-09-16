@@ -29,7 +29,6 @@ function Signup() {
   };
 
   const handleSubmit = async (e) => {
-    //najpierw wchodzi do try, jak coś się nie powiedzie to wchodzi do catcha
     try {
       e.preventDefault();
       const validate = () => {
@@ -61,7 +60,7 @@ function Signup() {
     <section className={`${styles.signup}`}>
       <div className={styles.signup_wrapper}>
         <form className={`${styles.signup_form}`} onSubmit={handleSubmit}>
-          <h3 className={`${styles.p}`}>Podaj dane:</h3>
+          <h3 className={`${styles.p}`}>Pierwsze logowanie na stronie:</h3>
           <label className={styles.label}>
             E-mail:{" "}
             <input

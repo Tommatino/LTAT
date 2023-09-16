@@ -7,12 +7,12 @@ import { useEffect } from "react";
 import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
 import { db, app } from "../../firebase.js";
 import { getAuth } from "firebase/auth";
-import useUserParameteres from "../../Hooks/useUserParameteres.js";
+import useUserParameters from "../../Hooks/useUserParameters.js";
 import AlcoholDayForm from "../AlcoholDayForm/AlcoholDayForm.jsx";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
 
 function Home() {
-  const { getUserParam } = useUserParameteres();
+  const { getUserParam } = useUserParameters();
   const { getAlcoholData } = useAlcoholData();
   const navigate = useNavigate();
   const auth = getAuth(app);
