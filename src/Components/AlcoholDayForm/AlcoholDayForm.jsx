@@ -4,6 +4,7 @@ import useAlcoholData from "../../Hooks/useAlcoholData.js";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { app, db } from "../../firebase.js";
 import { getAuth } from "firebase/auth";
+import StatisticsData from "../StatisticsData/StatisticsData.jsx";
 
 function AlcoholDayForm() {
   const auth = getAuth(app);
@@ -87,6 +88,8 @@ function AlcoholDayForm() {
         <button className={styles.button_save} onClick={handleClick}>
           <span className="material-symbols-outlined">add_box</span>Zapisz
         </button>
+
+        <StatisticsData />
       </div>
     </section>
   );

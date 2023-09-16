@@ -2,7 +2,7 @@ import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
 import Home from "./Components/Home/Home.jsx";
 import About from "./Components/About/About.jsx";
-import Statistics from "./Components/Statistics/Statistics.jsx";
+import StatisticsChart from "./Components/StatisticsChart/StatisticsChart.jsx";
 import Signup from "./Components/Signup/Signup.jsx";
 import Login from "./Components/Login/Login.jsx";
 import UserParametersForm from "./Components/UserParametersForm/UserParametersForm.jsx";
@@ -52,10 +52,10 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route
-          path="/statistics"
+          path="/statistics-chart"
           element={
             <PrivateRoute>
-              <Statistics />
+              <StatisticsChart />
             </PrivateRoute>
           }
         />

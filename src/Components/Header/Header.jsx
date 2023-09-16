@@ -1,10 +1,10 @@
 import styles from "./header.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logout from "../Logout/Logout.jsx";
-import useUserData from "../../Hooks/useUserData.js";
+import useUserLogin from "../../Hooks/useUserLogin.js";
 
 function Header() {
-  const user = useUserData();
+  const user = useUserLogin();
   console.log(user);
 
   return (
@@ -63,7 +63,7 @@ function Header() {
             </li>
             <li className={styles.li}>
               <NavLink
-                to={user ? "/statistics" : "/signup"}
+                to={user ? "/statistics-chart" : "/signup"}
                 className={styles.NavLink}
                 style={({ isActive }) =>
                   isActive && user ? { color: "green" } : {}

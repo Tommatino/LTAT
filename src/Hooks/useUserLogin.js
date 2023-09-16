@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase.js";
 
-function useUserData() {
+function useUserLogin() {
   const [user, setUser] = useState(null);
   const auth = getAuth(app);
 
@@ -25,4 +25,4 @@ function useUserData() {
   return user;
 }
 
-export default useUserData;
+export default useUserLogin;

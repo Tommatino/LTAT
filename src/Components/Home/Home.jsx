@@ -1,6 +1,6 @@
 import styles from "./home.module.scss";
 import Row from "../Row/Row";
-import useUserData from "../../Hooks/useUserData.js";
+import useUserLogin from "../../Hooks/useUserLogin.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -16,7 +16,7 @@ function Home() {
   const { getAlcoholData } = useAlcoholData();
   const navigate = useNavigate();
   const auth = getAuth(app);
-  const user = useUserData();
+  const user = useUserLogin();
   const [userParam, setUserParam] = useState({});
   const [alcoholData, setAlcoholData] = useState({});
 
@@ -30,6 +30,7 @@ function Home() {
         ]);
         setUserParam(fetchedUserParam);
         setAlcoholData(fetchedAlcoholData);
+        console.log("Fetched % data", alcoholData);
       } catch (err) {
         console.log(err);
       }

@@ -1,8 +1,8 @@
-import useUserData from "../../Hooks/useUserData.js";
+import useUserLogin from "../../Hooks/useUserLogin.js";
 import Login from "../Login/Login.jsx";
 
 function PrivateRoute({ children }) {
-  const user = useUserData();
+  const user = useUserLogin();
   if (!user) {
     return <Login />;
   }
