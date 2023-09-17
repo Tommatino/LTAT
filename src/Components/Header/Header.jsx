@@ -23,7 +23,7 @@ function Header() {
                 }
                 end
               >
-                Strona główna
+                Main
               </NavLink>
             </li>
 
@@ -35,7 +35,7 @@ function Header() {
                 }
                 end
               >
-                % Formularz
+                %-form
               </NavLink>
             </li>
 
@@ -47,7 +47,7 @@ function Header() {
                 }
                 end
               >
-                Dane użytkownika
+                User
               </NavLink>
             </li>
             <li className={styles.li}>
@@ -58,7 +58,7 @@ function Header() {
                 }
                 end
               >
-                O aplikacji
+                About
               </NavLink>
             </li>
             <li className={styles.li}>

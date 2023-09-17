@@ -1,0 +1,28 @@
+@import "_variables.scss";
+
+:root {
+  /*font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;*/
+  /*line-height: 1.5;*/
+  /*font-weight: 400;*/
+}
+
+.container {
+  width: 100%;
+  max-width: $main-width;
+  margin: 0 auto;
+  box-sizing: border-box;
+  //padding: 0;
+}
+
+.btn {
+  font-family: Arial;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  padding: 2rem 1rem;
+  border-radius: $button-radius;
+  border: 2px solid black;
+  cursor: pointer;
+  text-align: center;
+}

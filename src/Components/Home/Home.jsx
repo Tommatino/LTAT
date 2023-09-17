@@ -39,51 +39,38 @@ function Home() {
   }, []);
 
   return (
-    <section className={styles.main}>
+    <article className={styles.main}>
       <div className={`${styles.main_container} container`}>
-        <article className={styles.main_article}>
-          <div className={styles.main_article__first}>
-            {/*<AlcoholDayForm />*/}
-            <div className={styles.div}>
-              <p>Ilość spoż. alkoholu w ostatnim tygodniu [g]:</p>
-              <p>100</p>
-              <p>Ilość spoż. alkoholu w ostatnich 4 tygodniach [g]:</p>
-              <p>550</p>
-            </div>
-          </div>
-          <div className={styles.main_article__second}>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th className={styles.td}>lp.</th>
-                  <th className={styles.td}>Data</th>
-                  <th className={styles.td}>Ilość spoż. alkoholu [g]</th>
-                  <th className={styles.td}>
-                    Relacja względem dziennego limitu [g]
-                  </th>
-                  <th className={styles.td}>Spalanie [h]</th>
-                  <th className={styles.td}>Promile [‰]</th>
-                  <th className={styles.td}>Promile, wpływ na zdrowie</th>
-                  <th className={styles.td}>Usuń</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(alcoholData).map((date, index) => (
-                  <Row
-                    key={date}
-                    date={date}
-                    alcoholGrams={alcoholData[date]}
-                    lp={index}
-                    gender={userParam.gender}
-                    weight={userParam.weight}
-                  />
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </article>
+        <table className={styles.main_table}>
+          <thead>
+            <tr>
+              <th className={styles.td}>lp.</th>
+              <th className={styles.td}>Data</th>
+              <th className={styles.td}>Ilość spoż. alkoholu [g]</th>
+              <th className={styles.td}>
+                Relacja względem dziennego limitu [g]
+              </th>
+              <th className={styles.td}>Spalanie [h]</th>
+              <th className={styles.td}>Promile [‰]</th>
+              <th className={styles.td}>Promile, wpływ na zdrowie</th>
+              <th className={styles.td}>Usuń</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(alcoholData).map((date, index) => (
+              <Row
+                key={date}
+                date={date}
+                alcoholGrams={alcoholData[date]}
+                lp={index}
+                gender={userParam.gender}
+                weight={userParam.weight}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
-    </section>
+    </article>
   );
 }
 

@@ -1,3 +1,4 @@
+@import "../../scss/main";
 
 .header {
   height: 6vh;
@@ -9,15 +10,23 @@
     justify-content: space-between;
     align-items: center;
     .logo {
+      font-family: $font-logo;
+      font-size: 30px;
+      font-weight: 600;
       color: gold;
     }
     .menu{
+      font-family: $font-auxiliary;
+      font-weight: 600;
 
       &_nav {
         display: flex;
         justify-content: space-between;
         .li {
           margin-right: 1rem;
+          &:hover {
+            text-decoration: underline;
+          }
           &:last-child {
             margin-right: 0;
             .NavLink {
