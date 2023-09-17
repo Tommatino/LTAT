@@ -2,8 +2,9 @@
 
 .header {
   height: 6vh;
-  background-color: lightslategrey;
+  background-color: $color-main;
   padding: 0 1rem;
+  box-shadow: 0 0.2rem 1rem $color-auxiliary;
   &_container {
     line-height: 6vh;
     display: flex;
@@ -13,7 +14,7 @@
       font-family: $font-logo;
       font-size: 30px;
       font-weight: 600;
-      color: gold;
+      color: $color-auxiliary;
     }
     .menu{
       font-family: $font-auxiliary;
@@ -26,6 +27,8 @@
           margin-right: 1rem;
           &:hover {
             text-decoration: underline;
+            text-underline-offset: 0.15rem;
+            text-decoration-color: white;
           }
           &:last-child {
             margin-right: 0;

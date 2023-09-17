@@ -6,6 +6,11 @@
   /*font-weight: 400;*/
 }
 
+body {
+  color: $color-text;
+  font-family: $font-main;
+}
+
 .container {
   width: 100%;
   max-width: $main-width;
@@ -15,12 +20,12 @@
 }
 
 .btn {
-  font-family: Arial;
-  color: black;
+  font-family: $font-auxiliary;
+  color: $color-text;
   text-transform: uppercase;
   font-weight: bold;
   display: inline-block;
-  padding: 2rem 1rem;
+  padding: 0;
   border-radius: $button-radius;
   border: 2px solid black;
   cursor: pointer;

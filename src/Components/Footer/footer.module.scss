@@ -1,13 +1,23 @@
+@import "../../scss/main";
 
 .footer {
   height: 6vh;
-  background-color: lightslategrey;
+  background-color: $color-main;
   padding: 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 0 1.5rem $color-auxiliary;
   &_container {
-    background-color: deepskyblue;
-    line-height: 6vh;
+
     &__link {
     float: right;
+      &:hover {
+        color: #50C878;
+      }
+    }
+    i {
+      font-size: 1.5rem;
     }
   }
 }

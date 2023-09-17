@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { app } from "../../firebase.js";
+import styles from "./logout.module.scss";
 
 function Logout() {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ function Logout() {
 
   return (
     <>
-      <button onClick={handleLogOut}>Log out</button>
+      <button className={`${styles.logout} btn`} onClick={handleLogOut}>
+        Log out
+      </button>
       {error && <p>{error}</p>}
     </>
   );

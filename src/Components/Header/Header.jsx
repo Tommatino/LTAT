@@ -19,7 +19,12 @@ function Header() {
               <NavLink
                 to={user ? "/" : "/signup"}
                 style={({ isActive }) =>
-                  isActive && user ? { color: "green" } : {}
+                  isActive && user
+                    ? {
+                        color: "#0BDA51",
+                        fontSize: "1.15rem",
+                      }
+                    : {}
                 }
                 end
               >
@@ -31,7 +36,9 @@ function Header() {
               <NavLink
                 to={user ? "/alcohol-form" : "/signup"}
                 style={({ isActive }) =>
-                  isActive && user ? { color: "green" } : {}
+                  isActive && user
+                    ? { color: "#0BDA51", fontSize: "1.15rem" }
+                    : {}
                 }
                 end
               >
@@ -43,7 +50,9 @@ function Header() {
               <NavLink
                 to={user ? "/userform" : "/signup"}
                 style={({ isActive }) =>
-                  isActive && user ? { color: "green" } : {}
+                  isActive && user
+                    ? { color: "#0BDA51", fontSize: "1.15rem" }
+                    : {}
                 }
                 end
               >
@@ -54,7 +63,9 @@ function Header() {
               <NavLink
                 to={user ? "/about" : "/signup"}
                 style={({ isActive }) =>
-                  isActive && user ? { color: "green" } : {}
+                  isActive && user
+                    ? { color: "#0BDA51", fontSize: "1.15rem" }
+                    : {}
                 }
                 end
               >
@@ -66,13 +77,15 @@ function Header() {
                 to={user ? "/statistics-chart" : "/signup"}
                 className={styles.NavLink}
                 style={({ isActive }) =>
-                  isActive && user ? { color: "green" } : {}
+                  isActive && user
+                    ? { color: "#0BDA51", fontSize: "1.15rem" }
+                    : {}
                 }
                 end
               >
-                <span className={`${styles.span} material-symbols-outlined`}>
-                  account_circle
-                </span>
+                {/*<span className={`${styles.span} material-symbols-outlined`}>*/}
+                {/*  account_circle*/}
+                {/*</span>*/}
                 {user?.email || "Not logged in"}
                 {user && <Logout />}
               </NavLink>
