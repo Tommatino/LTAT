@@ -1,4 +1,14 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+  deleteField,
+} from "firebase/firestore";
 import { db, app } from "../firebase.js";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
@@ -9,25 +19,58 @@ function useAlcoholData() {
   const auth = getAuth(app);
 
   const getAlcoholDay = async () => {
-    const docRef = doc(db, "alcoholStatistics", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data()?.[currentDay] || 0;
-    //day jest obiektem, [] dajemy aby użyć zmiennej
+    const q = query(
+      collection(db, "alcoholStatistics"),
+      where("user", "==", auth.currentUser.uid),
+    );
+    const querySnapshot = await getDocs(q);
+    let documentData;
+    querySnapshot.forEach((doc) => {
+      documentData = doc.data();
+    });
+    return documentData?.[currentDay] || 0;
   };
-  const setAlcoholDay = async (alcohol, prevAlcoholState) => {
+
+  const setAlcoholDay = async (alcohol, prevAlcoholState, user) => {
     const alcoholStatisticsRef = collection(db, "alcoholStatistics");
-    await setDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
+    await updateDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
       [currentDay]: alcohol + prevAlcoholState,
+      user: user,
     });
   };
 
   const getAlcoholData = async () => {
-    const docRef = doc(db, "alcoholStatistics", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data();
+    const q = query(
+      collection(db, "alcoholStatistics"),
+      where("user", "==", auth.currentUser.uid),
+    );
+    const querySnapshot = await getDocs(q);
+    let documentData;
+    querySnapshot.forEach((doc) => {
+      documentData = doc.data();
+    });
+    // eslint-disable-next-line no-unused-vars
+    const { user, ...alcoholData } = documentData;
+    return alcoholData;
   };
 
-  return { setAlcoholDay, getAlcoholDay, getAlcoholData };
+  const delAlcoholDay = async (chosenDay) => {
+    // eslint-disable-next-line no-unused-vars
+    const { [chosenDay]: dayToDelete, ...otherDays } = await getAlcoholData();
+    //const alcoholStatisticsRef = collection(db, "alcoholStatistics");
+    setDoc(doc(db, "alcoholStatistics", auth.currentUser.uid), {
+      ...otherDays,
+      user: auth.currentUser.uid,
+    });
+
+    // const q = query(
+    //   collection(db, "alcoholStatistics"),
+    //   where("user", "==", auth.currentUser.uid),
+    // );
+    // await updateDoc(q, { [chosenDay]: deleteField() });
+  };
+
+  return { setAlcoholDay, getAlcoholDay, getAlcoholData, delAlcoholDay };
 }
 
 export default useAlcoholData;

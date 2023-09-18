@@ -38,6 +38,16 @@ function Home() {
     getUserData();
   }, []);
 
+  const deleteRow = (date) => {
+    setAlcoholData((prev) => {
+      // eslint-disable-next-line no-unused-vars
+      const { [date]: dayToDelete, ...otherDays } = prev;
+      return {
+        ...otherDays,
+      };
+    });
+  };
+
   return (
     <article className={styles.main}>
       <div className={`${styles.main_container} container`}>
@@ -65,6 +75,7 @@ function Home() {
                 lp={index}
                 gender={userParam.gender}
                 weight={userParam.weight}
+                deleteRow={deleteRow}
               />
             ))}
           </tbody>

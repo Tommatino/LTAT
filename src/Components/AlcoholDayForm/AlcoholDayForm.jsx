@@ -5,9 +5,10 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { app, db } from "../../firebase.js";
 import { getAuth } from "firebase/auth";
 import StatisticsData from "../StatisticsData/StatisticsData.jsx";
-
+import useUserLogin from "../../Hooks/useUserLogin.js";
 function AlcoholDayForm() {
   const auth = getAuth(app);
+  const user = useUserLogin();
   const { setAlcoholDay, getAlcoholDay } = useAlcoholData();
   const [alcoholFormValues, setAlcoholFormValues] = useState({
     alcoholML: 0,
@@ -47,7 +48,7 @@ function AlcoholDayForm() {
   const handleClick = async () => {
     try {
       const consumedAlcohol = await getAlcoholDay();
-      setAlcoholDay(alcoholGrams, consumedAlcohol);
+      setAlcoholDay(alcoholGrams, consumedAlcohol, user.uid);
     } catch (error) {
       console.log(error);
     }

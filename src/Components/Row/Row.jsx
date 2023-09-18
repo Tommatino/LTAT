@@ -1,7 +1,9 @@
 import styles from "./row.module.scss";
-import { useState } from "react";
+import { doc, updateDoc, deleteField } from "firebase/firestore";
+import useAlcoholData from "../../Hooks/useAlcoholData.js";
 
-function Row({ date, alcoholGrams, lp, gender, weight }) {
+function Row({ date, alcoholGrams, lp, gender, weight, deleteRow }) {
+  const { delAlcoholDay } = useAlcoholData();
   let promileSwitch;
   let switchText;
   const relation = () => {
@@ -48,6 +50,11 @@ function Row({ date, alcoholGrams, lp, gender, weight }) {
 
   console.log("Switch tekst:", switchText);
 
+  const handleClick = async () => {
+    await delAlcoholDay(date);
+    deleteRow(date);
+  };
+
   return (
     <tr style={styles.tr}>
       <td>{lp + 1}</td>
@@ -58,7 +65,9 @@ function Row({ date, alcoholGrams, lp, gender, weight }) {
       <td>{promileSwitch}</td>
       <td>{switchText}</td>
       <td>
-        <span className="material-symbols-outlined">disabled_by_default</span>
+        <span className="material-symbols-outlined" onClick={handleClick}>
+          disabled_by_default
+        </span>
       </td>
     </tr>
   );

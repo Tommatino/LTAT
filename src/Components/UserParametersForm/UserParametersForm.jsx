@@ -9,47 +9,41 @@ import useUserParameters from "../../Hooks/useUserParameters.js";
 
 function UserParametersForm() {
   const auth = getAuth(app);
-  const u = useUserLogin();
+  const user = useUserLogin();
   const { getUserParam } = useUserParameters();
-  const [user, setUser] = useState({
+  const [userParameters, setUserParameters] = useState({
     gender: "F",
     weight: 0,
   });
-  const [uParam, setUParam] = useState({});
+  const [prevWeight, setPrevWeight] = useState(null);
   const [checkWeight, setCheckWeight] = useState(false);
 
   useEffect(() => {
     const fetchUserParam = async () => {
       try {
         const userParam = await getUserParam();
-        setUParam(userParam);
-        console.log("Form user param", uParam);
+        setUserParameters(userParam);
+        setPrevWeight(userParam.weight);
+        console.log("Form user param", userParam);
       } catch (err) {
         console.log(err);
       }
     };
     fetchUserParam();
-  }, [user]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevState) => {
+    setUserParameters((prevState) => {
       return {
         ...prevState,
         [name]: value,
       };
     });
-    console.log(user);
   };
 
   const validate = () => {
-    console.log(
-      typeof user.weight,
-      user.weight,
-      user.weight.length,
-      typeof user.weight.length,
-    );
-    setCheckWeight(user.weight > 0 ? false : true);
+    setCheckWeight(userParameters.weight > 0 ? false : true);
     if (!checkWeight) {
       return true;
     }
@@ -62,15 +56,16 @@ function UserParametersForm() {
       if (validate()) {
         const userParametersRef = collection(db, "userParameters");
         await setDoc(doc(userParametersRef, auth.currentUser.uid), {
-          gender: user.gender,
-          weight: parseInt(user.weight),
-          user: u.uid,
+          gender: userParameters.gender,
+          weight: parseInt(userParameters.weight),
+          user: user.uid,
         });
+        setPrevWeight(userParameters.weight);
       }
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-    setUser((prev) => {
+    setUserParameters((prev) => {
       return {
         ...prev,
         weight: 0,
@@ -90,7 +85,7 @@ function UserParametersForm() {
               type="radio"
               name="gender"
               value="F"
-              checked={user.gender === "F"}
+              checked={userParameters.gender === "F"}
               onChange={handleChange}
             />
             K
@@ -98,7 +93,7 @@ function UserParametersForm() {
               type="radio"
               name="gender"
               value="M"
-              checked={user.gender === "M"}
+              checked={userParameters.gender === "M"}
               onChange={handleChange}
             />
             M
@@ -108,12 +103,12 @@ function UserParametersForm() {
             <input
               type="number"
               name="weight"
-              value={user.weight}
+              value={userParameters.weight}
               onChange={handleChange}
               placeholder="kg"
             />
           </label>
-          <p>Bieżąca waga: {uParam.weight || 0}</p>
+          <p>Poprzednia waga: {prevWeight || 0}</p>
           <button type="submit" className={styles.button}>
             Prześlij
           </button>

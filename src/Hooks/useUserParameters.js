@@ -1,14 +1,30 @@
 import { getAuth } from "firebase/auth";
 import { app, db } from "../firebase.js";
-import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  getDoc,
+  where,
+  query,
+} from "firebase/firestore";
 
 function useUserParameters() {
   const auth = getAuth(app);
   const getUserParam = async () => {
-    const docUserParamRef = doc(db, "userParameters", auth.currentUser.uid);
-    const docSnap = await getDoc(docUserParamRef);
-    console.log("Document data:", docSnap.data());
-    return docSnap.data();
+    const q = query(
+      collection(db, "userParameters"),
+      where("user", "==", auth.currentUser.uid),
+    );
+
+    const querySnapshot = await getDocs(q);
+    let documentData;
+    querySnapshot.forEach((doc) => {
+      documentData = doc.data();
+      console.log(doc.id, " => ", doc.data());
+    });
+    return documentData;
   };
 
   return { getUserParam };
