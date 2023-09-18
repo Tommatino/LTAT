@@ -6,17 +6,31 @@ import { app, db } from "../../firebase.js";
 import { getAuth } from "firebase/auth";
 import StatisticsData from "../StatisticsData/StatisticsData.jsx";
 import useUserLogin from "../../Hooks/useUserLogin.js";
+import useCalcAlcoholStats from "../../Hooks/useCalcAlcoholStats.js";
 function AlcoholDayForm() {
   const auth = getAuth(app);
   const user = useUserLogin();
-  const { setAlcoholDay, getAlcoholDay } = useAlcoholData();
+  const { setAlcoholDay, getAlcoholDay, getAlcoholData } = useAlcoholData();
   const [alcoholFormValues, setAlcoholFormValues] = useState({
     alcoholML: 0,
     alcoholPercentage: 0,
   });
   const [alcoholGrams, setAlcoholGrams] = useState(0);
-  // const [promileTotal, setPromileTotal] = useState(0);
-  const [userParam, setUserParam] = useState({});
+  const [historicalData, setHistoricalData] = useState({});
+  const { calcLastWeek } = useCalcAlcoholStats();
+
+  useEffect(() => {
+    const getHistoricalAlcoholData = async () => {
+      try {
+        const data = await getAlcoholData();
+        setHistoricalData(data);
+        calcLastWeek(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getHistoricalAlcoholData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
