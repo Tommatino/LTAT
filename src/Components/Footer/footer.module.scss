@@ -7,7 +7,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0 0 1.5rem $color-auxiliary;
+  box-shadow: 0 -0.3rem 1rem $color-auxiliary;
+  position: relative;
   &_container {
 
     &__link {

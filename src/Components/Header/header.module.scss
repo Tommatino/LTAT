@@ -5,6 +5,9 @@
   background-color: $color-main;
   padding: 0 1rem;
   box-shadow: 0 0.2rem 1rem $color-auxiliary;
+  position: relative;
+  z-index: 10;
+  //https://stackoverflow.com/questions/13772427/shadow-not-showing-up
   &_container {
     line-height: 6vh;
     display: flex;
