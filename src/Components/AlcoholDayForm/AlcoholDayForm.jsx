@@ -17,14 +17,12 @@ function AlcoholDayForm() {
   });
   const [alcoholGrams, setAlcoholGrams] = useState(0);
   const [historicalData, setHistoricalData] = useState({});
-  const { calcLastWeek } = useCalcAlcoholStats();
 
   useEffect(() => {
     const getHistoricalAlcoholData = async () => {
       try {
         const data = await getAlcoholData();
         setHistoricalData(data);
-        calcLastWeek(data);
       } catch (err) {
         console.log(err);
       }
@@ -104,7 +102,7 @@ function AlcoholDayForm() {
           <span className="material-symbols-outlined">add_box</span>Zapisz
         </button>
 
-        <StatisticsData />
+        <StatisticsData historicalData={historicalData} />
       </div>
     </section>
   );
