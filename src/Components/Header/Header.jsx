@@ -5,7 +5,6 @@ import useUserLogin from "../../Hooks/useUserLogin.js";
 
 function Header() {
   const user = useUserLogin();
-  console.log(user);
 
   return (
     <header className={`${styles.header}`}>

@@ -9,7 +9,6 @@ function useUserLogin() {
   useEffect(() => {
     //onAuthStateChanged ustawia efekt i odpala się za każdą zmianą
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user, "Hook");
       //getCurrentUser
       if (user) {
         setUser(user);

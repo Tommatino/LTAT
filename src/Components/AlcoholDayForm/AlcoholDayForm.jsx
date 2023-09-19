@@ -17,14 +17,20 @@ function AlcoholDayForm() {
   });
   const [alcoholGrams, setAlcoholGrams] = useState(0);
   const [historicalData, setHistoricalData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
 
   useEffect(() => {
     const getHistoricalAlcoholData = async () => {
       try {
+        setIsLoading(true);
         const data = await getAlcoholData();
         setHistoricalData(data);
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
+        setIsLoading(false);
+        setIsFailed(true);
       }
     };
     getHistoricalAlcoholData();
@@ -66,45 +72,50 @@ function AlcoholDayForm() {
     }
   };
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (isFailed) {
+    return <p>Something gone wrong...</p>;
+  }
+
   return (
-    <section className={styles.alcohol_day}>
-      <div className={`${styles.alcohol_day__container} container`}>
-        <div className={styles.alcohol_day__info}>
-          <h3 className={styles.h3}>Aktualne wartości:</h3>
-          <p className={styles.p}>Czysty alkohol łącznie [g]: {alcoholGrams}</p>
-        </div>
-        <form className={styles.alcohol_day__form} onSubmit={handleSubmit}>
-          <label className={styles.label}>
-            Ilość spoż. alkoholu [ml]:{" "}
-            <input
-              type="number"
-              name="alcoholML"
-              value={alcoholFormValues.alcoholML}
-              onChange={handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Zawartość alkoholu [%]:{" "}
-            <input
-              type="number"
-              name="alcoholPercentage"
-              value={alcoholFormValues.alcoholPercentage}
-              onChange={handleChange}
-            />
-          </label>
-          <button type="submit">
-            Dodaj pozycję
-            <span className="material-symbols-outlined">add_box</span>
-          </button>
-        </form>
-
-        <button className={styles.button_save} onClick={handleClick}>
-          <span className="material-symbols-outlined">add_box</span>Zapisz
-        </button>
-
-        <StatisticsData historicalData={historicalData} />
+    <>
+      <div className={styles.alcohol_day__info}>
+        <h3 className={styles.h3}>Aktualne wartości:</h3>
+        <p className={styles.p}>Czysty alkohol łącznie [g]: {alcoholGrams}</p>
       </div>
-    </section>
+      <form className={styles.alcohol_day__form} onSubmit={handleSubmit}>
+        <label className={styles.label}>
+          Ilość spoż. alkoholu [ml]:{" "}
+          <input
+            type="number"
+            name="alcoholML"
+            value={alcoholFormValues.alcoholML}
+            onChange={handleChange}
+          />
+        </label>
+        <label className={styles.label}>
+          Zawartość alkoholu [%]:{" "}
+          <input
+            type="number"
+            name="alcoholPercentage"
+            value={alcoholFormValues.alcoholPercentage}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">
+          Dodaj pozycję
+          <span className="material-symbols-outlined">add_box</span>
+        </button>
+      </form>
+
+      <button className={styles.button_save} onClick={handleClick}>
+        <span className="material-symbols-outlined">add_box</span>Zapisz
+      </button>
+
+      <StatisticsData historicalData={historicalData} />
+    </>
   );
 }
 

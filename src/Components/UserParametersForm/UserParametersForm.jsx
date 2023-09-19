@@ -1,5 +1,4 @@
 import styles from "./userparametersform.module.scss";
-import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { app, db } from "../../firebase.js";
 import { useEffect, useState } from "react";
@@ -17,16 +16,22 @@ function UserParametersForm() {
   });
   const [prevWeight, setPrevWeight] = useState(null);
   const [checkWeight, setCheckWeight] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
 
   useEffect(() => {
     const fetchUserParam = async () => {
       try {
+        setIsLoading(true);
         const userParam = await getUserParam();
         setUserParameters(userParam);
         setPrevWeight(userParam.weight);
         console.log("Form user param", userParam);
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
+        setIsFailed(true);
+        setIsLoading(false);
       }
     };
     fetchUserParam();
@@ -54,6 +59,7 @@ function UserParametersForm() {
     try {
       e.preventDefault();
       if (validate()) {
+        setIsLoading(true);
         const userParametersRef = collection(db, "userParameters");
         await setDoc(doc(userParametersRef, auth.currentUser.uid), {
           gender: userParameters.gender,
@@ -61,9 +67,12 @@ function UserParametersForm() {
           user: user.uid,
         });
         setPrevWeight(userParameters.weight);
+        setIsLoading(false);
       }
     } catch (e) {
       console.error("Error adding document: ", e);
+      setIsLoading(false);
+      setIsFailed(true);
     }
     setUserParameters((prev) => {
       return {
@@ -72,6 +81,13 @@ function UserParametersForm() {
       };
     });
   };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (isFailed) {
+    return <p>Something gone wrong...</p>;
+  }
 
   return (
     <section className={`${styles.userform}`}>

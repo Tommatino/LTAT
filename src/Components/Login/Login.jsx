@@ -12,6 +12,7 @@ function Signup() {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,14 +31,16 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then(() => {
         setError(null);
         navigate("/");
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(error?.message || "Coś poszło nie tak");
+        setIsLoading(false);
       });
   };
 
@@ -67,7 +70,7 @@ function Signup() {
             />
           </label>
           {error && <p>{error}</p>}
-          <button type="submit" className={styles.button}>
+          <button type="submit" className={styles.button} disabled={isLoading}>
             Prześlij
           </button>
         </form>

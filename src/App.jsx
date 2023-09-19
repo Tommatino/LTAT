@@ -1,11 +1,11 @@
 import Header from "./Components/Header/Header.jsx";
 import Footer from "./Components/Footer/Footer.jsx";
-import Home from "./Components/Home/Home.jsx";
+import HomePage from "./Components/Home/HomePage.jsx";
 import About from "./Components/About/About.jsx";
-import StatisticsChart from "./Components/StatisticsChart/StatisticsChart.jsx";
+import StatisticsChartPage from "./Components/StatisticsChart/StatisticsChartsPage.jsx";
 import Signup from "./Components/Signup/Signup.jsx";
 import Login from "./Components/Login/Login.jsx";
-import UserParametersForm from "./Components/UserParametersForm/UserParametersForm.jsx";
+import UserParametersFormPage from "./Components/UserParametersForm/UserParametersFormPage.jsx";
 
 import {
   BrowserRouter as Router,
@@ -14,7 +14,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute.jsx";
-import AlcoholDayForm from "./Components/AlcoholDayForm/AlcoholDayForm.jsx";
+import AlcoholDayFormPage from "./Components/AlcoholDayForm/AlcoholDayFormPage.jsx";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           path={"/"}
           element={
             <PrivateRoute>
-              <Home />
+              <HomePage />
             </PrivateRoute>
           }
         />
@@ -34,7 +34,7 @@ function App() {
           path="/alcohol-form"
           element={
             <PrivateRoute>
-              <AlcoholDayForm />
+              <AlcoholDayFormPage />
             </PrivateRoute>
           }
         />
@@ -45,7 +45,7 @@ function App() {
           path="/userform"
           element={
             <PrivateRoute>
-              <UserParametersForm />
+              <UserParametersFormPage />
             </PrivateRoute>
           }
         />
@@ -55,7 +55,7 @@ function App() {
           path="/statistics-chart"
           element={
             <PrivateRoute>
-              <StatisticsChart />
+              <StatisticsChartPage />
             </PrivateRoute>
           }
         />

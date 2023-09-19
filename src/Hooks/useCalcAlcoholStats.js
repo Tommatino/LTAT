@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function UseCalcAlcoholStats() {
   const filterDays = (alcoholData, pastDaysSpan) => {
     const today = new Date();
