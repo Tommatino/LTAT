@@ -30,3 +30,11 @@
   z-index: 0;
   @content;
 }
+
+@mixin signup_login__main {
+  height: $main-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include background-main{};
+}

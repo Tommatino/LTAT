@@ -2,7 +2,7 @@ import styles from "./login.module.scss";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase.js";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Signup() {
   const auth = getAuth(app);
@@ -22,7 +22,6 @@ function Signup() {
         [name]: value,
       };
     });
-    //console.log(user)
   };
 
   const handleClick = () => {
@@ -46,9 +45,9 @@ function Signup() {
 
   return (
     <section className={`${styles.login}`}>
-      <div className={styles.login_container}>
+      <div className={styles.login_wrapper}>
         <form className={`${styles.login_form}`} onSubmit={handleSubmit}>
-          <h3 className={`${styles.p}`}>Login:</h3>
+          <h3 className={`${styles.h3}`}>Login:</h3>
           <label className={styles.label}>
             E-mail:{" "}
             <input
@@ -70,14 +69,18 @@ function Signup() {
             />
           </label>
           {error && <p>{error}</p>}
-          <button type="submit" className={styles.button} disabled={isLoading}>
+          <button
+            type="submit"
+            className={`${styles.button} btn`}
+            disabled={isLoading}
+          >
             Prześlij
           </button>
         </form>
-        <div className={styles.login_signup}>
-          <h4 className={`${styles.p}`}>Nowy użytkownik:</h4>
-          <button onClick={handleClick}>Kliknij tu</button>
-        </div>
+
+        <NavLink to={"/signup"} className={`${styles.NavLink} btn`} end>
+          Pierwszy raz? - signup
+        </NavLink>
       </div>
     </section>
   );
