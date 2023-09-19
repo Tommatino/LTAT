@@ -60,7 +60,7 @@ function Signup() {
     <section className={`${styles.signup}`}>
       <div className={styles.signup_wrapper}>
         <form className={`${styles.signup_form}`} onSubmit={handleSubmit}>
-          <h3 className={`${styles.p}`}>Pierwsze logowanie na stronie:</h3>
+          <h3 className={`${styles.h3}`}>Pierwsze logowanie na stronie:</h3>
           <label className={styles.label}>
             E-mail:{" "}
             <input
@@ -81,7 +81,7 @@ function Signup() {
               placeholder="Hasło"
             />
           </label>
-          <button type="submit" className={styles.button}>
+          <button type="submit" className={`${styles.button} btn`}>
             Prześlij
           </button>
           {error && <p>{error}</p>}
@@ -95,7 +95,7 @@ function Signup() {
             <p>Hasło musi się składać z przynajmniej 5 znaków</p>
           )}
         </form>
-        <NavLink to={"/login"} className={styles.NavLink} end>
+        <NavLink to={"/login"} className={`${styles.NavLink} btn`} end>
           Do logowania
         </NavLink>
       </div>

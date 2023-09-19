@@ -1,5 +1,5 @@
 import styles from "./header.module.scss";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logout from "../Logout/Logout.jsx";
 import useUserLogin from "../../Hooks/useUserLogin.js";
 
@@ -16,7 +16,7 @@ function Header() {
           <ul className={styles.menu_nav}>
             <li className={styles.li}>
               <NavLink
-                to={user ? "/" : "/signup"}
+                to={"/"}
                 style={({ isActive }) =>
                   isActive && user
                     ? {
@@ -33,7 +33,7 @@ function Header() {
 
             <li className={styles.li}>
               <NavLink
-                to={user ? "/alcohol-form" : "/signup"}
+                to={"/alcohol-form"}
                 style={({ isActive }) =>
                   isActive && user
                     ? { color: "#0BDA51", fontSize: "1.15rem" }
@@ -47,7 +47,7 @@ function Header() {
 
             <li className={styles.li}>
               <NavLink
-                to={user ? "/userform" : "/signup"}
+                to={"/userform"}
                 style={({ isActive }) =>
                   isActive && user
                     ? { color: "#0BDA51", fontSize: "1.15rem" }
@@ -60,7 +60,7 @@ function Header() {
             </li>
             <li className={styles.li}>
               <NavLink
-                to={user ? "/about" : "/signup"}
+                to={"/about"}
                 style={({ isActive }) =>
                   isActive && user
                     ? { color: "#0BDA51", fontSize: "1.15rem" }
@@ -73,7 +73,7 @@ function Header() {
             </li>
             <li className={styles.li}>
               <NavLink
-                to={user ? "/statistics-chart" : "/signup"}
+                to={"/statistics-chart"}
                 className={styles.NavLink}
                 style={({ isActive }) =>
                   isActive && user

@@ -1,7 +1,7 @@
 @import "../../scss/main";
 
 .footer {
-  height: 6vh;
+  height: $footer-height;
   background-color: $color-main;
   padding: 0 1rem;
   display: flex;

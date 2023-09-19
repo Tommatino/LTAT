@@ -16,18 +16,22 @@ body {
   max-width: $main-width;
   margin: 0 auto;
   box-sizing: border-box;
-  //padding: 0;
 }
 
 .btn {
   font-family: $font-auxiliary;
+  font-size: 1rem;
   color: $color-text;
+  background-color: $color-auxiliary;
   text-transform: uppercase;
   font-weight: bold;
   display: inline-block;
-  padding: 0;
+  padding: 3px;
   border-radius: $button-radius;
   border: 2px solid black;
   cursor: pointer;
   text-align: center;
+  &:hover {
+    opacity: 0.6;
+  }
 }

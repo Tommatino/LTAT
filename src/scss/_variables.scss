@@ -6,12 +6,15 @@ $font-main: 'Nunito', sans-serif;
 
 //DIMENSIONS
 $main-width: 1440px;
+$header-height: 6vh;
+$footer-height: 6vh;
+$main-height: 88vh;
 
 //COLORS
 $color-main: #87919B;
 $color-auxiliary: #FFD700;
 $color-text: #000000;
-$color-nav: #50C878;
+$color-nav: #0BDA51;
 $color-white: #FFFFFF;
 $color-content: #ccf2ff;
 
@@ -21,9 +24,13 @@ $button-radius: 10px;
 
 //BREAKPOINTS
 $mobile: 480px;
+$mobile-above: 481px;
 $tablet: 768px;
-$laptop: 769px;
+$tablet-above: 769px;
+$laptop: 1024px;
+$desktop: 1025px;
 
 //RADIUS
 $radius-main: 35px;
+$radius-auxiliary: 8px;
 
