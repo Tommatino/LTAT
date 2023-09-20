@@ -33,10 +33,12 @@ function useAlcoholData() {
 
   const setAlcoholDay = async (alcohol, prevAlcoholState, user) => {
     const alcoholStatisticsRef = collection(db, "alcoholStatistics");
+    console.log("set1 % day");
     await updateDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
       [currentDay]: alcohol + prevAlcoholState,
       user: user,
     });
+    console.log("set2 % day");
   };
 
   const getAlcoholData = async () => {

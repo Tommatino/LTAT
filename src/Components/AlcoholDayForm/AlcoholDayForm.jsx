@@ -65,10 +65,14 @@ function AlcoholDayForm() {
 
   const handleClick = async () => {
     try {
+      setIsLoading(true);
       const consumedAlcohol = await getAlcoholDay();
       setAlcoholDay(alcoholGrams, consumedAlcohol, user.uid);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsFailed(true);
     }
   };
 
