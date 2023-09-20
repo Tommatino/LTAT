@@ -1,5 +1,3 @@
-import styles from "./row.module.scss";
-import { doc, updateDoc, deleteField } from "firebase/firestore";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
 
 function Row({ date, alcoholGrams, lp, gender, weight, deleteRow }) {
@@ -53,7 +51,7 @@ function Row({ date, alcoholGrams, lp, gender, weight, deleteRow }) {
   };
 
   return (
-    <tr style={styles.tr}>
+    <tr>
       <td>{lp + 1}</td>
       <td>{date}</td>
       <td>{alcoholGrams}</td>

@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./alcoholdayform.module.scss";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
-import { collection, doc, getDoc } from "firebase/firestore";
-import { app, db } from "../../firebase.js";
-import { getAuth } from "firebase/auth";
 import StatisticsData from "../StatisticsData/StatisticsData.jsx";
 import useUserLogin from "../../Hooks/useUserLogin.js";
-import useCalcAlcoholStats from "../../Hooks/useCalcAlcoholStats.js";
 function AlcoholDayForm() {
-  const auth = getAuth(app);
   const user = useUserLogin();
   const { setAlcoholDay, getAlcoholDay, getAlcoholData } = useAlcoholData();
   const [alcoholFormValues, setAlcoholFormValues] = useState({
@@ -84,10 +79,12 @@ function AlcoholDayForm() {
   }
 
   return (
-    <>
+    <div className={styles.alcohol_day__wrapper}>
       <div className={styles.alcohol_day__info}>
         <h3 className={styles.h3}>Aktualne wartości:</h3>
-        <p className={styles.p}>Czysty alkohol łącznie [g]: {alcoholGrams}</p>
+        <p className={styles.p}>
+          Czysty alkohol łącznie [g]: <span>{alcoholGrams}</span>
+        </p>
       </div>
       <form className={styles.alcohol_day__form} onSubmit={handleSubmit}>
         <label className={styles.label}>
@@ -108,18 +105,17 @@ function AlcoholDayForm() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">
+        <button type="submit" className={`btn`}>
           Dodaj pozycję
-          <span className="material-symbols-outlined">add_box</span>
         </button>
       </form>
 
-      <button className={styles.button_save} onClick={handleClick}>
-        <span className="material-symbols-outlined">add_box</span>Zapisz
+      <button className={`${styles.button_save} btn`} onClick={handleClick}>
+        Zapisz
       </button>
 
       <StatisticsData historicalData={historicalData} />
-    </>
+    </div>
   );
 }
 

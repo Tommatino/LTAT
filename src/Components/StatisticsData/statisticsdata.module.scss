@@ -1,8 +1,29 @@
+@import "../../scss/mixins";
 
 .statistics_data {
   margin-top: 1rem;
-  background: lightskyblue;
+  border: 1px solid $color-text;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 0.3rem;
+
   p {
     margin-bottom: 1rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    @include mobile{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    span {
+      width: 120px;
+      float: right;
+      
+      @include mobile{
+        text-align: center;
+      }
+    }
   }
 }

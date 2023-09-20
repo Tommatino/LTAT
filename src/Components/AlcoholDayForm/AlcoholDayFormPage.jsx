@@ -1,5 +1,4 @@
 import styles from "./alcoholdayform.module.scss";
-import StatisticsData from "../StatisticsData/StatisticsData.jsx";
 import AlcoholDayForm from "./AlcoholDayForm.jsx";
 
 function AlcoholDayFormPage() {

@@ -8,16 +8,16 @@ function StatisticsData({ historicalData }) {
   return (
     <div className={styles.statistics_data}>
       <p>
-        Ilość spoż. alkoholu w ostatnim tygodniu [g]:
-        {calcLastWeek(historicalData)}
+        Ilość alko. spoż. w ost. tyg. [g]:
+        <span>{calcLastWeek(historicalData)}</span>
       </p>
       <p>
-        Ilość spoż. alkoholu w ostatnich 4 tygodniach [g]:
-        {calcLastFourWeeks(historicalData)}
+        Ilość alko. spoż. w ost. 4 tyg. [g]:
+        <span>{calcLastFourWeeks(historicalData)}</span>
       </p>
       <p>
-        Łączna ilość spoż. alkoholu w ostatnim tygodniu [g]:
-        {calcLastAllDays(historicalData)}
+        Ilość alko. spoż. łącznie [g]:
+        <span>{calcLastAllDays(historicalData)}</span>
       </p>
     </div>
   );
