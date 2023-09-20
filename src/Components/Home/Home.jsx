@@ -73,33 +73,35 @@ function Home() {
   }
 
   return (
-    <table className={styles.main_table}>
-      <thead>
-        <tr>
-          <th className={styles.td}>lp.</th>
-          <th className={styles.td}>Data</th>
-          <th className={styles.td}>Ilość spoż. alkoholu [g]</th>
-          <th className={styles.td}>Relacja względem dziennego limitu [g]</th>
-          <th className={styles.td}>Spalanie [h]</th>
-          <th className={styles.td}>Promile [‰]</th>
-          <th className={styles.td}>Promile, wpływ na zdrowie</th>
-          <th className={styles.td}>Usuń</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.keys(alcoholData).map((date, index) => (
-          <Row
-            key={date}
-            date={date}
-            alcoholGrams={alcoholData[date]}
-            lp={index}
-            gender={userParam.gender}
-            weight={userParam.weight}
-            deleteRow={deleteRow}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className={styles.main_wrapper}>
+      <table className={styles.main_table}>
+        <thead>
+          <tr>
+            <th className={styles.td}>lp.</th>
+            <th className={styles.td}>Data</th>
+            <th className={styles.td}>Ilość spoż. alkoholu [g]</th>
+            <th className={styles.td}>Relacja względem dziennego limitu [g]</th>
+            <th className={styles.td}>Spalanie [h]</th>
+            <th className={styles.td}>Promile [‰]</th>
+            <th className={styles.td}>Promile, wpływ na zdrowie</th>
+            <th className={styles.td}>Usuń</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(alcoholData).map((date, index) => (
+            <Row
+              key={date}
+              date={date}
+              alcoholGrams={alcoholData[date]}
+              lp={index}
+              gender={userParam.gender}
+              weight={userParam.weight}
+              deleteRow={deleteRow}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

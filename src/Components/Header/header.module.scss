@@ -1,5 +1,7 @@
 @import "../../scss/main";
 
+//https://codesandbox.io/s/react-responsive-nav-forked-qvm6wc?file=/src/styles/navbar.css
+
 .header {
   height: $header-height;
   background-color: $color-main;
@@ -54,7 +56,7 @@
       width: 40px;
       padding: 0.5rem;
       border-radius: 50%;
-      background-color: #283b8b;
+      background-color: $color-text;
       cursor: pointer;
       transition: background-color 0.2s ease-in-out;
       position: absolute;
@@ -65,7 +67,7 @@
     }
 
     .hamburger:hover {
-      background-color: #2642af;
+      background-color: $color-nav;
     }
     @media screen and (max-width: 550px) {
       .hamburger {
