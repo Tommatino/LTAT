@@ -1,21 +1,23 @@
+@import "../../scss/main.scss";
 
-.userform {
-  height: 88vh;
-  background-color: magenta;
+.user_param {
+  height: $main-height;
+  background-color: white;
+  @include background-main{};
   display: flex;
   justify-content: center;
   align-items: center;
-  &_wrapper {
+  &__wrapper {
 
   }
-  &_form {
+  &__form {
     width: 30vw;
     height: 40vh;
     background-color: deepskyblue;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    p, .label, .button {
+    .h3, .label, .button {
       margin: 1rem 0 0 1rem;
     }
   }

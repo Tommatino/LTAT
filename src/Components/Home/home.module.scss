@@ -1,9 +1,10 @@
+@import "../../scss/main.scss";
 
 .main {
-  height: 88vh;
+  height: $main-height;
+  @include background-main{};
   &_container {
-    background-color: green;
-    height: 88vh;
+    height: $main-height;
     display: flex;
     justify-content: center;
     align-items: center;

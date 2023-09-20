@@ -1,9 +1,6 @@
 @import "_variables.scss";
 
 :root {
-  /*font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;*/
-  /*line-height: 1.5;*/
-  /*font-weight: 400;*/
 }
 
 body {
@@ -16,6 +13,7 @@ body {
   max-width: $main-width;
   margin: 0 auto;
   box-sizing: border-box;
+  padding: 0 1.5rem;
 }
 
 .btn {

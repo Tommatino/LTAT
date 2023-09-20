@@ -1,12 +1,23 @@
+@import "../../scss/main.scss";
 
 .about {
-  height: 88vh;
+  height: $main-height;
+  @include background-main{};
   &_container {
-    background-color: yellow;
-    height: 88vh;
+    height: $main-height;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
+  &_article {
+    height: 60vh;
+  }
+  h3, p {
+    margin-bottom: 1rem;
+    text-align: justify;
+  }
+  p::first-letter {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
 }

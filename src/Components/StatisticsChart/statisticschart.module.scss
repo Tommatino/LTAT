@@ -1,9 +1,10 @@
+@import "../../scss/main.scss";
 
 .statistics {
-  height: 88vh;
+  height: $main-height;
+  @include background-main{};
   &_container {
-    background-color: lightblue;
-    height: 88vh;
+    height: $main-height;
     display: flex;
     justify-content: center;
     align-items: center;

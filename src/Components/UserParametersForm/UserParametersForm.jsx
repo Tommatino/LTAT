@@ -90,10 +90,10 @@ function UserParametersForm() {
   }
 
   return (
-    <section className={`${styles.userform}`}>
-      <div className={styles.userform_wrapper}>
-        <form className={`${styles.userform_form}`} onSubmit={handleSubmit}>
-          <h3 className={`${styles.p}`}>Podaj dodatkowe, niezbędne dane:</h3>
+    <section className={`${styles.user_param}`}>
+      <div className={styles.user_param__wrapper}>
+        <form className={`${styles.user_param__form}`} onSubmit={handleSubmit}>
+          <h3 className={`${styles.h3}`}>Podaj dodatkowe, niezbędne dane:</h3>
 
           <label className={styles.label}>
             Płeć:
