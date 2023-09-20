@@ -42,9 +42,9 @@
           }
           &:last-child {
             margin-right: 0;
-            .span {
-             //line-height: 6vh;
-              padding-right: 0.2rem;
+           .link {
+             display: flex;
+             align-items: center;
             }
           }
         }
@@ -92,13 +92,13 @@
       }
 
       .menu li a {
-        color: black;
+        color: $color-text;
         width: 100%;
         padding: 1.5rem 0;
       }
 
       .menu li:hover {
-        background-color: #eee;
+        background-color: $color-white;
       }
 
       .menu.expanded ul {

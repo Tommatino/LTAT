@@ -96,7 +96,7 @@ function Header() {
             <li className={styles.li}>
               <NavLink
                 to={"/statistics-chart"}
-                // className={styles.NavLink}
+                className={styles.link}
                 style={({ isActive }) =>
                   isActive && user
                     ? { color: "#0BDA51", fontSize: "1.15rem" }
