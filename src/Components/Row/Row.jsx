@@ -21,7 +21,6 @@ function Row({ date, alcoholGrams, lp, gender, weight, deleteRow }) {
     const factor = gender === "F" ? 0.6 : 0.7;
     const promile = ((alcoholGrams / weight) * factor).toFixed(2);
     promileSwitch = promile * 1;
-    console.log("check", promileSwitch);
     return promile;
   };
 
@@ -47,8 +46,6 @@ function Row({ date, alcoholGrams, lp, gender, weight, deleteRow }) {
   } else {
     switchText = "Bez efektu";
   }
-
-  console.log("Switch tekst:", switchText);
 
   const handleClick = async () => {
     await delAlcoholDay(date);

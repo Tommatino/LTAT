@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 import { db, app } from "../firebase.js";
 import { getAuth } from "firebase/auth";
-import { useState } from "react";
 
 function useAlcoholData() {
   const currentDay = new Date().toISOString().split("T")[0];
@@ -33,7 +32,6 @@ function useAlcoholData() {
 
   const setAlcoholDay = async (alcohol, prevAlcoholState, user) => {
     const alcoholStatisticsRef = collection(db, "alcoholStatistics");
-    console.log("set1 % day");
     const prevAlcoholData = await getAlcoholData();
     await setDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
       ...prevAlcoholData,
@@ -41,7 +39,6 @@ function useAlcoholData() {
       user: user,
     });
     //setDoc zamiast updateDoc ponieważ chcemy tworzyć nowy dokument, updateDoc nie działałby gdyby trzebabyło stworzyć nowy doc gdy nie było wcześniej danych
-    console.log("set2 % day");
   };
 
   const getAlcoholData = async () => {
@@ -57,7 +54,6 @@ function useAlcoholData() {
     if (!documentData) {
       return {};
     }
-    console.log(documentData);
     // eslint-disable-next-line no-unused-vars
     const { user, ...alcoholData } = documentData;
     return alcoholData;

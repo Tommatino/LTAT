@@ -2,9 +2,11 @@ import styles from "./header.module.scss";
 import { NavLink } from "react-router-dom";
 import Logout from "../Logout/Logout.jsx";
 import useUserLogin from "../../Hooks/useUserLogin.js";
+import { useState } from "react";
 
 function Header() {
   const user = useUserLogin();
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   return (
     <header className={`${styles.header}`}>
@@ -12,7 +14,27 @@ function Header() {
         <a href={user ? "/" : "/signup"} className={styles.logo}>
           LTAT
         </a>
-        <nav className={styles.menu}>
+        <button
+          className={styles.hamburger}
+          onClick={() => {
+            setIsNavExpanded(!isNavExpanded);
+          }}
+        >
+          {/* icon from Heroicons.com */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="white"
+          >
+            <path
+              fillRule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+        <nav className={`${styles.menu} ${isNavExpanded && styles.expanded}`}>
           <ul className={styles.menu_nav}>
             <li className={styles.li}>
               <NavLink
@@ -74,7 +96,7 @@ function Header() {
             <li className={styles.li}>
               <NavLink
                 to={"/statistics-chart"}
-                className={styles.NavLink}
+                // className={styles.NavLink}
                 style={({ isActive }) =>
                   isActive && user
                     ? { color: "#0BDA51", fontSize: "1.15rem" }
@@ -82,9 +104,6 @@ function Header() {
                 }
                 end
               >
-                {/*<span className={`${styles.span} material-symbols-outlined`}>*/}
-                {/*  account_circle*/}
-                {/*</span>*/}
                 {user?.email || "Not logged in"}
                 {user && <Logout />}
               </NavLink>

@@ -26,10 +26,8 @@ function Home() {
         ]);
         setUserParam(fetchedUserParam);
         setAlcoholData(fetchedAlcoholData);
-        console.log("Fetched % data", alcoholData);
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
         setIsFailed(true);
         setIsLoading(false);
       }

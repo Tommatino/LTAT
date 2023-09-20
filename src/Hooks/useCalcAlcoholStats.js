@@ -1,12 +1,8 @@
-import { useState } from "react";
-
 function UseCalcAlcoholStats() {
   const filterDays = (alcoholData, pastDaysSpan) => {
     const today = new Date();
     const startDay = new Date(today.setDate(today.getDate() - pastDaysSpan));
-    console.log(today.setDate(today.getDate() - pastDaysSpan));
 
-    console.log("Start day", startDay);
     //https://www.shecodes.io/athena/42795-how-to-get-the-date-3-days-after-today-in-javascript
     const filterAlcoholData = Object.entries(alcoholData).filter(
       ([date]) => new Date(date).getTime() > startDay.getTime(),
@@ -29,7 +25,6 @@ function UseCalcAlcoholStats() {
 
   const calcLastFourWeeks = (alcoholData) => {
     const alcoDays = filterDays(alcoholData, 28);
-    console.log("Alco days 4 weeks", alcoDays);
     return sumAlcoDays(alcoDays);
   };
 
