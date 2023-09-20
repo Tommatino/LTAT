@@ -30,8 +30,7 @@
       text-align: center;
       vertical-align: central;
       padding: 0.3rem;
-      //border: 1px solid black;
-      border-bottom: 0.1px solid $color-text;
+      border-bottom: 0.1px solid $color-auxiliary;
     }
     thead th:first-child {
       border-top-left-radius: 10px;
@@ -39,18 +38,14 @@
     thead th:last-child {
       border-top-right-radius: 10px;
     }
-
-    //tbody tr:first-child {
-    //  border-top-left-radius: 10px;
-    //}
-    //tr:first-child th:last-child {
-    //  border-top-right-radius: 10px;
-    //}
-    //tr:last-child td:first-child {
-    //  border-bottom-left-radius: 10px;
-    //}
-    //tr:last-child td:last-child {
-    //  border-bottom-right-radius: 10px;
-    //}
+    span {
+      cursor: pointer;
+      &:hover {
+        background-color: $color-nav;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+    }
   }
 }
