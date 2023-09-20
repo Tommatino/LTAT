@@ -34,10 +34,13 @@ function useAlcoholData() {
   const setAlcoholDay = async (alcohol, prevAlcoholState, user) => {
     const alcoholStatisticsRef = collection(db, "alcoholStatistics");
     console.log("set1 % day");
-    await updateDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
+    const prevAlcoholData = await getAlcoholData();
+    await setDoc(doc(alcoholStatisticsRef, auth.currentUser.uid), {
+      ...prevAlcoholData,
       [currentDay]: alcohol + prevAlcoholState,
       user: user,
     });
+    //setDoc zamiast updateDoc ponieważ chcemy tworzyć nowy dokument, updateDoc nie działałby gdyby trzebabyło stworzyć nowy doc gdy nie było wcześniej danych
     console.log("set2 % day");
   };
 
