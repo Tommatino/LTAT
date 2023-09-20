@@ -24,8 +24,8 @@ function UserParametersForm() {
       try {
         setIsLoading(true);
         const userParam = await getUserParam();
-        setUserParameters(userParam);
-        setPrevWeight(userParam.weight);
+        userParam && setUserParameters(userParam);
+        setPrevWeight(userParam?.weight || 0);
         console.log("Form user param", userParam);
         setIsLoading(false);
       } catch (err) {

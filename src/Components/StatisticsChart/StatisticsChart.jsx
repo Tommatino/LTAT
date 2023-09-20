@@ -1,5 +1,5 @@
 import useUserData from "../../Hooks/useUserLogin.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
 import {
@@ -40,6 +40,17 @@ function StatisticsChart() {
   }
   if (isFailed) {
     return <p>Something gone wrong...</p>;
+  }
+
+  if (!alcoChartData.length) {
+    return (
+      <p>
+        Musisz podać dane w %-form{" "}
+        <Link to={"/alcohol-form"} className={`btn`}>
+          Go to
+        </Link>
+      </p>
+    );
   }
 
   return (

@@ -49,6 +49,10 @@ function useAlcoholData() {
     querySnapshot.forEach((doc) => {
       documentData = doc.data();
     });
+    if (!documentData) {
+      return {};
+    }
+    console.log(documentData);
     // eslint-disable-next-line no-unused-vars
     const { user, ...alcoholData } = documentData;
     return alcoholData;

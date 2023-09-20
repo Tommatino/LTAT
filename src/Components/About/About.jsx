@@ -32,8 +32,8 @@ function About() {
             czasie, np. w przypadku zmiany wagi użytkownika. Na stronie „Main”
             generowane są statystyki danego dnia, np. na podstawie ogólnie
             ustalonych dziennych limitów spożycia (20 g czystego alkoholu/dzień
-            dla kobiet, oraz 40 g czystego alkoholu/dzień dla mężczyzn ), oraz
-            na podstawie promili (statystyki dotyczące samopoczucia i zdrowia).
+            dla kobiet, 40 g czystego alkoholu/dzień dla mężczyzn ), oraz na
+            podstawie promili (statystyki dotyczące samopoczucia i zdrowia).
             Dodatkowo po kliknięciu na nazwę użytkownika można sprawdzić ogólną
             statystykę w postaci wykresu.
           </p>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useUserParameters from "../../Hooks/useUserParameters.js";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { getUserParam } = useUserParameters();
@@ -51,6 +52,26 @@ function Home() {
   }
   if (isFailed) {
     return <p>Something gone wrong...</p>;
+  }
+  if (!userParam) {
+    return (
+      <p>
+        Musisz podać płeć i wagę{" "}
+        <Link to={"/userform"} className={`btn`}>
+          Go to
+        </Link>
+      </p>
+    );
+  }
+  if (!Object.keys(alcoholData).length) {
+    return (
+      <p>
+        Musisz podać dane w %-form{" "}
+        <Link to={"/alcohol-form"} className={`btn`}>
+          Go to
+        </Link>
+      </p>
+    );
   }
 
   return (
