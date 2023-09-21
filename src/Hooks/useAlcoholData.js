@@ -63,7 +63,7 @@ function useAlcoholData() {
     // eslint-disable-next-line no-unused-vars
     const { [chosenDay]: dayToDelete, ...otherDays } = await getAlcoholData();
     //const alcoholStatisticsRef = collection(db, "alcoholStatistics");
-    setDoc(doc(db, "alcoholStatistics", auth.currentUser.uid), {
+    await setDoc(doc(db, "alcoholStatistics", auth.currentUser.uid), {
       ...otherDays,
       user: auth.currentUser.uid,
     });

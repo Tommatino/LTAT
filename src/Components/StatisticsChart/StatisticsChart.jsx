@@ -1,5 +1,5 @@
-import useUserData from "../../Hooks/useUserLogin.js";
-import { Link, useNavigate } from "react-router-dom";
+import styles from "./statisticschart.module.scss";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
 import {
@@ -10,8 +10,10 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
-
+//https://recharts.org/en-US
+//https://github.com/recharts/recharts/issues/466
 function StatisticsChart() {
   const { getAlcoholData } = useAlcoholData();
   const [alcoChartData, setAlcoChartData] = useState([]);
@@ -54,14 +56,16 @@ function StatisticsChart() {
   }
 
   return (
-    <LineChart width={600} height={400} data={alcoChartData}>
-      <Line type="monotone" dataKey="alcoData" stroke="#8884d8" />
-      <XAxis dataKey="date" />
-      <YAxis />
-      <CartesianGrid stroke="#f5f5f5" />
-      <Tooltip />
-      <Legend />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart width={600} height={400} data={alcoChartData}>
+        <Line type="monotone" dataKey="alcoData" stroke="#0BDA51" />
+        <XAxis dataKey="date" angle={-45} textAnchor="end" height={100} />
+        <YAxis />
+        <CartesianGrid stroke="#f5f5f5" />
+        <Tooltip />
+        <Legend />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
 
