@@ -50,7 +50,6 @@ function AlcoholDayForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     calculateGrams();
-    console.log(alcoholGrams);
     setAlcoholFormValues({
       alcoholML: 0,
       alcoholPercentage: 0,
@@ -64,7 +63,6 @@ function AlcoholDayForm() {
       setAlcoholDay(alcoholGrams, consumedAlcohol, user.uid);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsFailed(true);
     }

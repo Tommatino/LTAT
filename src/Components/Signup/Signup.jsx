@@ -2,9 +2,7 @@ import styles from "./signup.module.scss";
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase.js";
-import { db } from "../../firebase.js";
 import { NavLink, useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
 
 function Signup() {
   const auth = getAuth(app);
@@ -32,9 +30,9 @@ function Signup() {
       e.preventDefault();
       const validate = () => {
         setCheckEmail(
-          user.email.length < 3 &&
-            user.email.includes("@") &&
-            user.email.includes("."),
+          user.email.length < 6 &&
+            !user.email.includes("@") &&
+            !user.email.includes("."),
         );
         setCheckPassword(user.password.length < 5);
         if (checkEmail || checkPassword) {
@@ -86,8 +84,8 @@ function Signup() {
           {error && <p>{error}</p>}
           {checkEmail && (
             <p>
-              Email musi się składać z przynajmniej 3 znaków, oraz zawierać odp
-              znaki
+              Email musi się składać z przynajmniej 6 znaków, oraz zawierać `@`
+              i `.`
             </p>
           )}
           {checkPassword && (
