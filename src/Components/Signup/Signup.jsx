@@ -25,7 +25,6 @@ function Signup() {
         [name]: value,
       };
     });
-    console.log(user);
   };
 
   const handleSubmit = async (e) => {

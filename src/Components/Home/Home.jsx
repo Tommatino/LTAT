@@ -1,6 +1,6 @@
 import styles from "./home.module.scss";
 import Row from "../Row/Row";
-
+import alcoDataSorting from "../../Utils/alcoDataSorting.js";
 import { useState } from "react";
 import { useEffect } from "react";
 import useUserParameters from "../../Hooks/useUserParameters.js";
@@ -88,11 +88,11 @@ function Home() {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(alcoholData).map((date, index) => (
+          {alcoDataSorting(alcoholData).map(([date, value], index) => (
             <Row
               key={date}
               date={date}
-              alcoholGrams={alcoholData[date]}
+              alcoholGrams={value}
               lp={index}
               gender={userParam.gender}
               weight={userParam.weight}
