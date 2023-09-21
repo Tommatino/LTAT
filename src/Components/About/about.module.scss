@@ -8,13 +8,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    padding-top: 1.5rem;
+
+    @include mobile{
+      font-size: 0.8rem;
+    }
+
+    @include mobile_tablet{
+      width: 530px;
+    }
+    @media screen and (min-width: $tablet-above){
+      width: 760px;
+    }
   }
   &_article {
-    height: 60vh;
-    padding: 6vh 0;
+    overflow-y: hidden;
+    margin: auto;
   }
   h3, p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-align: justify;
   }
   p::first-letter {
