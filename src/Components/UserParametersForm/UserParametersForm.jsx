@@ -88,46 +88,48 @@ function UserParametersForm() {
   }
 
   return (
-    <form className={`${styles.user_param__form}`} onSubmit={handleSubmit}>
-      <h3 className={`${styles.h3}`}>Podaj dodatkowe, niezbędne dane:</h3>
+    <div className={styles.user_param__wrapper}>
+      <form className={`${styles.user_param__form}`} onSubmit={handleSubmit}>
+        <h3 className={`${styles.h3}`}>Podaj dodatkowe, niezbędne dane:</h3>
 
-      <label className={styles.label}>
-        Płeć:
-        <input
-          type="radio"
-          name="gender"
-          value="F"
-          checked={userParameters.gender === "F"}
-          onChange={handleChange}
-        />
-        <span>K</span>
-        <input
-          type="radio"
-          name="gender"
-          value="M"
-          checked={userParameters.gender === "M"}
-          onChange={handleChange}
-        />
-        <span>M</span>
-      </label>
-      <label className={styles.label}>
-        Waga:{" "}
-        <input
-          type="number"
-          name="weight"
-          value={userParameters.weight}
-          onChange={handleChange}
-          placeholder="kg"
-        />
-      </label>
-      <p>
-        Poprzednia waga: <span>{prevWeight || 0}</span>
-      </p>
-      <button type="submit" className={`${styles.button} btn`}>
-        Prześlij
-      </button>
-      {checkWeight && <p>Musisz podać wagę</p>}
-    </form>
+        <label className={styles.label}>
+          Płeć:
+          <input
+            type="radio"
+            name="gender"
+            value="F"
+            checked={userParameters.gender === "F"}
+            onChange={handleChange}
+          />
+          <span>K</span>
+          <input
+            type="radio"
+            name="gender"
+            value="M"
+            checked={userParameters.gender === "M"}
+            onChange={handleChange}
+          />
+          <span>M</span>
+        </label>
+        <label className={styles.label}>
+          Waga:{" "}
+          <input
+            type="number"
+            name="weight"
+            value={userParameters.weight}
+            onChange={handleChange}
+            placeholder="kg"
+          />
+        </label>
+        <p>
+          Poprzednia waga: <span>{prevWeight || 0}</span>
+        </p>
+        <button type="submit" className={`${styles.button} btn`}>
+          Prześlij
+        </button>
+        {checkWeight && <p>Musisz podać wagę</p>}
+      </form>
+    </div>
   );
 }
 
