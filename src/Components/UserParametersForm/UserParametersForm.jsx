@@ -2,7 +2,7 @@ import styles from "./userparametersform.module.scss";
 import { getAuth } from "firebase/auth";
 import { app, db } from "../../firebase.js";
 import { useEffect, useState } from "react";
-import { addDoc, setDoc, doc, collection } from "firebase/firestore";
+import { setDoc, doc, collection } from "firebase/firestore";
 import useUserLogin from "../../Hooks/useUserLogin.js";
 import useUserParameters from "../../Hooks/useUserParameters.js";
 
@@ -26,10 +26,8 @@ function UserParametersForm() {
         const userParam = await getUserParam();
         userParam && setUserParameters(userParam);
         setPrevWeight(userParam?.weight || 0);
-        console.log("Form user param", userParam);
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
         setIsFailed(true);
         setIsLoading(false);
       }
@@ -90,48 +88,46 @@ function UserParametersForm() {
   }
 
   return (
-    <section className={`${styles.user_param}`}>
-      <div className={styles.user_param__wrapper}>
-        <form className={`${styles.user_param__form}`} onSubmit={handleSubmit}>
-          <h3 className={`${styles.h3}`}>Podaj dodatkowe, niezbędne dane:</h3>
+    <form className={`${styles.user_param__form}`} onSubmit={handleSubmit}>
+      <h3 className={`${styles.h3}`}>Podaj dodatkowe, niezbędne dane:</h3>
 
-          <label className={styles.label}>
-            Płeć:
-            <input
-              type="radio"
-              name="gender"
-              value="F"
-              checked={userParameters.gender === "F"}
-              onChange={handleChange}
-            />
-            K
-            <input
-              type="radio"
-              name="gender"
-              value="M"
-              checked={userParameters.gender === "M"}
-              onChange={handleChange}
-            />
-            M
-          </label>
-          <label className={styles.label}>
-            Waga:{" "}
-            <input
-              type="number"
-              name="weight"
-              value={userParameters.weight}
-              onChange={handleChange}
-              placeholder="kg"
-            />
-          </label>
-          <p>Poprzednia waga: {prevWeight || 0}</p>
-          <button type="submit" className={styles.button}>
-            Prześlij
-          </button>
-          {checkWeight && <p>Musisz podać wagę</p>}
-        </form>
-      </div>
-    </section>
+      <label className={styles.label}>
+        Płeć:
+        <input
+          type="radio"
+          name="gender"
+          value="F"
+          checked={userParameters.gender === "F"}
+          onChange={handleChange}
+        />
+        <span>K</span>
+        <input
+          type="radio"
+          name="gender"
+          value="M"
+          checked={userParameters.gender === "M"}
+          onChange={handleChange}
+        />
+        <span>M</span>
+      </label>
+      <label className={styles.label}>
+        Waga:{" "}
+        <input
+          type="number"
+          name="weight"
+          value={userParameters.weight}
+          onChange={handleChange}
+          placeholder="kg"
+        />
+      </label>
+      <p>
+        Poprzednia waga: <span>{prevWeight || 0}</span>
+      </p>
+      <button type="submit" className={`${styles.button} btn`}>
+        Prześlij
+      </button>
+      {checkWeight && <p>Musisz podać wagę</p>}
+    </form>
   );
 }
 

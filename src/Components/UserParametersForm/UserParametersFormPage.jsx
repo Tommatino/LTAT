@@ -3,8 +3,8 @@ import UserParametersForm from "./UserParametersForm.jsx";
 
 function UserParametersFormPage() {
   return (
-    <section className={`${styles.userform}`}>
-      <div className={styles.userform_wrapper}>
+    <section className={`${styles.user_param}`}>
+      <div className={styles.user_param__wrapper}>
         <UserParametersForm />
       </div>
     </section>
