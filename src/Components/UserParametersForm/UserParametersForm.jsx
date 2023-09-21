@@ -28,7 +28,7 @@ function UserParametersForm() {
         setPrevWeight(userParam?.weight || 0);
         setIsLoading(false);
       } catch (err) {
-        setIsFailed(true);
+        setIsFailed(err.message);
         setIsLoading(false);
       }
     };
@@ -66,25 +66,25 @@ function UserParametersForm() {
         });
         setPrevWeight(userParameters.weight);
         setIsLoading(false);
+        setUserParameters((prev) => {
+          return {
+            ...prev,
+            weight: 0,
+          };
+        });
       }
     } catch (e) {
       console.error("Error adding document: ", e);
       setIsLoading(false);
       setIsFailed(true);
     }
-    setUserParameters((prev) => {
-      return {
-        ...prev,
-        weight: 0,
-      };
-    });
   };
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
   if (isFailed) {
-    return <p>Something gone wrong...</p>;
+    return <p>{isFailed}</p>;
   }
 
   return (

@@ -1,4 +1,5 @@
 import styles from "./statisticschart.module.scss";
+import alcoDataSorting from "../../Utils/alcoDataSorting.js";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
@@ -56,8 +57,8 @@ function StatisticsChart() {
   }
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart width={600} height={400} data={alcoChartData}>
+    <ResponsiveContainer width="100%" height={500}>
+      <LineChart data={alcoChartData}>
         <Line type="monotone" dataKey="alcoData" stroke="#0BDA51" />
         <XAxis dataKey="date" angle={-45} textAnchor="end" height={100} />
         <YAxis />
@@ -72,7 +73,7 @@ function StatisticsChart() {
 export default StatisticsChart;
 
 const mappedData = (data) => {
-  return Object.entries(data).map(([date, alcoData]) => ({
+  return alcoDataSorting(data).map(([date, alcoData]) => ({
     date: date,
     alcoData: alcoData,
   }));

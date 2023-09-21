@@ -13,7 +13,7 @@ function AlcoholDayForm() {
   const [alcoholGrams, setAlcoholGrams] = useState(0);
   const [historicalData, setHistoricalData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isFailed, setIsFailed] = useState(false);
+  const [isFailed, setIsFailed] = useState(null);
 
   useEffect(() => {
     const getHistoricalAlcoholData = async () => {
@@ -23,9 +23,8 @@ function AlcoholDayForm() {
         setHistoricalData(data);
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
         setIsLoading(false);
-        setIsFailed(true);
+        setIsFailed(err.message);
       }
     };
     getHistoricalAlcoholData();
@@ -75,7 +74,7 @@ function AlcoholDayForm() {
     return <p>Loading...</p>;
   }
   if (isFailed) {
-    return <p>Something gone wrong...</p>;
+    return <p>{isFailed}.</p>;
   }
 
   return (

@@ -13,7 +13,7 @@ function Home() {
   const [userParam, setUserParam] = useState({});
   const [alcoholData, setAlcoholData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isFailed, setIsFailed] = useState(false);
+  const [isFailed, setIsFailed] = useState(null);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -28,7 +28,7 @@ function Home() {
         setAlcoholData(fetchedAlcoholData);
         setIsLoading(false);
       } catch (err) {
-        setIsFailed(true);
+        setIsFailed(err?.message || "Something gone wrong");
         setIsLoading(false);
       }
     };
@@ -49,7 +49,7 @@ function Home() {
     return <p>Loading...</p>;
   }
   if (isFailed) {
-    return <p>Something gone wrong...</p>;
+    return <p>{isFailed}</p>;
   }
   if (!userParam) {
     return (

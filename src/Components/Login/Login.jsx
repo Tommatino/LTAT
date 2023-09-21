@@ -68,7 +68,7 @@ function Signup() {
               placeholder="Hasło"
             />
           </label>
-          {error && <p>{error}</p>}
+
           <button
             type="submit"
             className={`${styles.button} btn`}
@@ -76,6 +76,7 @@ function Signup() {
           >
             Prześlij
           </button>
+          {error && <p>{error}</p>}
         </form>
 
         <NavLink to={"/signup"} className={`${styles.NavLink} btn`} end>
