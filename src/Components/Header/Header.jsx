@@ -36,50 +36,50 @@ function Header() {
         </button>
         <nav className={`${styles.menu} ${isNavExpanded && styles.expanded}`}>
           <ul className={styles.menu_nav}>
-            <li className={styles.li}>
-              <NavLink
-                to={"/"}
-                style={({ isActive }) =>
-                  isActive && user
-                    ? {
-                        color: "#0BDA51",
-                        fontSize: "1.15rem",
-                      }
-                    : {}
-                }
-                end
-              >
-                Main
-              </NavLink>
-            </li>
+            {user && (
+              <>
+                <li className={styles.li}>
+                  <NavLink
+                    to={"/"}
+                    style={({ isActive }) =>
+                      isActive
+                        ? {
+                            color: "#0BDA51",
+                            fontSize: "1.15rem",
+                          }
+                        : {}
+                    }
+                    end
+                  >
+                    Main
+                  </NavLink>
+                </li>
 
-            <li className={styles.li}>
-              <NavLink
-                to={"/alcohol-form"}
-                style={({ isActive }) =>
-                  isActive && user
-                    ? { color: "#0BDA51", fontSize: "1.15rem" }
-                    : {}
-                }
-                end
-              >
-                %-form
-              </NavLink>
-            </li>
+                <li className={styles.li}>
+                  <NavLink
+                    to={"/alcohol-form"}
+                    style={({ isActive }) =>
+                      isActive ? { color: "#0BDA51", fontSize: "1.15rem" } : {}
+                    }
+                    end
+                  >
+                    %-form
+                  </NavLink>
+                </li>
 
-            <li className={styles.li}>
-              <NavLink
-                to={"/userform"}
-                style={({ isActive }) =>
-                  isActive && user
-                    ? { color: "#0BDA51", fontSize: "1.15rem" }
-                    : {}
-                }
-                end
-              >
-                User
-              </NavLink>
-            </li>
+                <li className={styles.li}>
+                  <NavLink
+                    to={"/userform"}
+                    style={({ isActive }) =>
+                      isActive ? { color: "#0BDA51", fontSize: "1.15rem" } : {}
+                    }
+                    end
+                  >
+                    User
+                  </NavLink>
+                </li>
+              </>
+            )}
             <li className={styles.li}>
               <NavLink
                 to={"/about"}

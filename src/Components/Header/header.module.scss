@@ -35,6 +35,10 @@
         }
         .li {
           margin-right: 1rem;
+          .active {
+            color: $color-nav;
+            fontSize: "1.15rem"
+          }
           &:hover {
             text-decoration: underline;
             text-underline-offset: 0.15rem;

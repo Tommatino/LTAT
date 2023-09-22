@@ -84,8 +84,8 @@ function Signup() {
           {error && <p>{error}</p>}
           {checkEmail && (
             <p>
-              Email musi się składać z przynajmniej 6 znaków, oraz zawierać `@`
-              i `.`
+              {`Email musi się składać z przynajmniej 6 znaków, oraz zawierać
+              "@" i "."`}
             </p>
           )}
           {checkPassword && (
