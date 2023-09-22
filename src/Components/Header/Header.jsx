@@ -84,9 +84,7 @@ function Header() {
               <NavLink
                 to={"/about"}
                 style={({ isActive }) =>
-                  isActive && user
-                    ? { color: "#0BDA51", fontSize: "1.15rem" }
-                    : {}
+                  isActive ? { color: "#0BDA51", fontSize: "1.15rem" } : {}
                 }
                 end
               >

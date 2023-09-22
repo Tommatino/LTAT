@@ -46,7 +46,7 @@ function UserParametersForm() {
   };
 
   const validate = () => {
-    setCheckWeight(userParameters.weight > 0 ? false : true);
+    setCheckWeight(userParameters.weight <= 0);
     if (!checkWeight) {
       return true;
     }

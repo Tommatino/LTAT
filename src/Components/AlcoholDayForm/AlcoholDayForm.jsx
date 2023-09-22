@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
 import styles from "./alcoholdayform.module.scss";
+import { useEffect, useState } from "react";
 import useAlcoholData from "../../Hooks/useAlcoholData.js";
 import StatisticsData from "../StatisticsData/StatisticsData.jsx";
 import useUserLogin from "../../Hooks/useUserLogin.js";
+import useUserParameters from "../../Hooks/useUserParameters.js";
+import { Link } from "react-router-dom";
 function AlcoholDayForm() {
+  const { getUserParam } = useUserParameters();
   const user = useUserLogin();
   const { setAlcoholDay, getAlcoholDay, getAlcoholData } = useAlcoholData();
   const [alcoholFormValues, setAlcoholFormValues] = useState({
@@ -11,23 +14,29 @@ function AlcoholDayForm() {
     alcoholPercentage: 0,
   });
   const [alcoholGrams, setAlcoholGrams] = useState(0);
-  const [historicalData, setHistoricalData] = useState({});
+  const [historicalAlcoholData, setHistoricalAlcoholData] = useState({});
+  const [historicalUserData, setHistoricalUserData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(null);
 
   useEffect(() => {
-    const getHistoricalAlcoholData = async () => {
+    const getHistoricalData = async () => {
       try {
         setIsLoading(true);
-        const data = await getAlcoholData();
-        setHistoricalData(data);
+        const [fetchedUserParam, fetchedAlcoholData] = await Promise.all([
+          // (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+          getUserParam(),
+          getAlcoholData(),
+        ]);
+        setHistoricalUserData(fetchedUserParam);
+        setHistoricalAlcoholData(fetchedAlcoholData);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
         setIsFailed(err.message);
       }
     };
-    getHistoricalAlcoholData();
+    getHistoricalData();
   }, []);
 
   const handleChange = (e) => {
@@ -74,6 +83,16 @@ function AlcoholDayForm() {
   if (isFailed) {
     return <p>{isFailed}.</p>;
   }
+  if (!historicalUserData) {
+    return (
+      <p>
+        Musisz podać płeć i wagę{" "}
+        <Link to={"/userform"} className={`btn`}>
+          Go to
+        </Link>
+      </p>
+    );
+  }
 
   return (
     <div className={styles.alcohol_day__wrapper}>
@@ -111,7 +130,7 @@ function AlcoholDayForm() {
         Zapisz
       </button>
 
-      <StatisticsData historicalData={historicalData} />
+      <StatisticsData historicalData={historicalAlcoholData} />
     </div>
   );
 }

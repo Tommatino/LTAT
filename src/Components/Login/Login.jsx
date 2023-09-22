@@ -2,7 +2,7 @@ import styles from "./login.module.scss";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase.js";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const auth = getAuth(app);
@@ -22,10 +22,6 @@ function Signup() {
         [name]: value,
       };
     });
-  };
-
-  const handleClick = () => {
-    navigate("/signup");
   };
 
   const handleSubmit = (e) => {
@@ -79,9 +75,9 @@ function Signup() {
           {error && <p>{error}</p>}
         </form>
 
-        <NavLink to={"/signup"} className={`${styles.NavLink} btn`} end>
+        <Link to={"/signup"} className={`${styles.NavLink} btn`}>
           Pierwszy raz? - signup
-        </NavLink>
+        </Link>
       </div>
     </section>
   );

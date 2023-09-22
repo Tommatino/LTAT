@@ -1,13 +1,10 @@
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
   query,
   setDoc,
-  updateDoc,
   where,
-  deleteField,
 } from "firebase/firestore";
 import { db, app } from "../firebase.js";
 import { getAuth } from "firebase/auth";
@@ -67,12 +64,6 @@ function useAlcoholData() {
       ...otherDays,
       user: auth.currentUser.uid,
     });
-
-    // const q = query(
-    //   collection(db, "alcoholStatistics"),
-    //   where("user", "==", auth.currentUser.uid),
-    // );
-    // await updateDoc(q, { [chosenDay]: deleteField() });
   };
 
   return { setAlcoholDay, getAlcoholDay, getAlcoholData, delAlcoholDay };

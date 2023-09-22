@@ -2,7 +2,7 @@ import styles from "./signup.module.scss";
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase.js";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const auth = getAuth(app);
@@ -92,9 +92,9 @@ function Signup() {
             <p>Hasło musi się składać z przynajmniej 5 znaków</p>
           )}
         </form>
-        <NavLink to={"/login"} className={`${styles.NavLink} btn`} end>
+        <Link to={"/login"} className={`${styles.NavLink} btn`}>
           Do logowania
-        </NavLink>
+        </Link>
       </div>
     </section>
   );

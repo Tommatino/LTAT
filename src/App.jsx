@@ -6,7 +6,6 @@ import StatisticsChartPage from "./Components/StatisticsChart/StatisticsChartsPa
 import Signup from "./Components/Signup/Signup.jsx";
 import Login from "./Components/Login/Login.jsx";
 import UserParametersFormPage from "./Components/UserParametersForm/UserParametersFormPage.jsx";
-
 import {
   BrowserRouter as Router,
   Routes,
