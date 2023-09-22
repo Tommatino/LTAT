@@ -14,6 +14,7 @@ function useUserParameters() {
     let documentData;
     querySnapshot.forEach((doc) => {
       documentData = doc.data();
+      //.data()zmienia iterowaną listę w obiekt
     });
     return documentData;
   };

@@ -10,6 +10,7 @@ function UseCalcAlcoholStats() {
     return filterAlcoholData.reduce((accumulator, [date, grams]) => {
       return { ...accumulator, [date]: grams };
     }, {});
+    //reducem zamieniamy listę list ponownie w obiekt
   };
 
   const sumAlcoDays = (alcoDays) => {
