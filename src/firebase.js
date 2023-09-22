@@ -4,12 +4,10 @@ import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-const apiKey = import.meta.env.VITE_API_KEY;
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   // eslint-disable-next-line no-undef
-  apiKey: apiKey,
+  apiKey: "AIzaSyB8Oju2yO0vdbOCplRhB4kzig2IBDl2Uh8",
   authDomain: "longtatest.firebaseapp.com",
   projectId: "longtatest",
   storageBucket: "longtatest.appspot.com",
