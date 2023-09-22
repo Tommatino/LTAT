@@ -69,7 +69,7 @@ function AlcoholDayForm() {
     try {
       setIsLoading(true);
       const consumedAlcohol = await getAlcoholDay();
-      setAlcoholDay(alcoholGrams, consumedAlcohol, user.uid);
+      await setAlcoholDay(alcoholGrams, consumedAlcohol, user.uid);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
