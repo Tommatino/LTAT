@@ -13,8 +13,9 @@ function Row({ date, alcoholGrams, lp, gender, weight, deleteRow }) {
   }, [alcoholGrams, gender, weight]);
 
   useEffect(() => {
+    console.log("switch", promileSwitch);
     switchFunction();
-  }, []);
+  }, [promileSwitch]);
 
   const relation = () => {
     if (gender === "F") {
